@@ -7,6 +7,18 @@
         @vite('resources/css/app.css')
     </head>
     <body class="h-full">
+        <x-alert class="shadow-sm">
+          <x-slot:heading class="font-bold">
+              Heading
+          </x-slot>
+       
+          Content
+       
+          <x-slot:footer class="text-sm">
+              Footer
+          </x-slot>
+        </x-alert>
+        
         {{-- Section untuk hero --}}
         <div id="HOME" class="bg-white">
             <header class="absolute inset-x-0 top-0 z-50">
@@ -33,7 +45,20 @@
                   <a href="#REQUEST" class="text-sm font-semibold leading-6 text-gray-900">Request</a>
                 </div>
                 <div class="hidden lg:flex lg:flex-1 lg:justify-end">
-                  <a href="/login" class="text-sm font-semibold leading-6 text-gray-900">Log in <span aria-hidden="true">&rarr;</span></a>
+                  @if (Route::has('login'))
+                      <div class="text-right z-10">
+                          @auth
+                              <a href="{{ url('/dashboard') }}" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Dashboard</a>
+                          @else
+                              <a href="{{ route('login') }}" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Log in</a>
+
+                              @if (Route::has('register'))
+                                  <a href="{{ route('register') }}" class="ml-4 font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Register</a>
+                              @endif
+                          @endauth
+                      </div>
+                  @endif
+                  {{-- <a href="/login" class="text-sm font-semibold leading-6 text-gray-900">Log in <span aria-hidden="true">&rarr;</span></a> --}}
                 </div>
               </nav>
               <!-- Mobile menu, show/hide based on menu open state. -->
@@ -61,7 +86,20 @@
                         <a href="#REQUEST" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Request</a>
                       </div>
                       <div class="py-6">
-                        <a href="/login" class="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Log in</a>
+                        @if (Route::has('login'))
+                            <div class="sm:top-0 sm:right-0 p-6 text-right z-10">
+                                @auth
+                                    <a href="{{ url('/dashboard') }}" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Dashboard</a>
+                                @else
+                                    <a href="{{ route('login') }}" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Log in</a>
+
+                                    @if (Route::has('register'))
+                                        <a href="{{ route('register') }}" class="ml-4 font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Register</a>
+                                    @endif
+                                @endauth
+                            </div>
+                        @endif
+                        {{-- <a href="/login" class="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Log in</a> --}}
                       </div>
                     </div>
                   </div>
@@ -273,14 +311,14 @@
         </div>
 
         {{-- Section footer --}}
-        <footer class="bg-white rounded-lg shadow dark:bg-gray-900 m-4">
+        <footer class="bg-white rounded-lg shadow m-4">
           <div class="w-full max-w-screen-xl mx-auto p-4 md:py-8">
               <div class="sm:flex sm:items-center sm:justify-between">
                   <a href="#" class="flex items-center mb-4 sm:mb-0">
                       <img src="https://flowbite.com/docs/images/logo.svg" class="h-8 mr-3" alt="Flowbite Logo" />
-                      <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">LOGO</span>
+                      <span class="self-center text-2xl font-semibold whitespace-nowrap">LOGO</span>
                   </a>
-                  <ul class="flex flex-wrap items-center mb-6 text-sm font-medium text-gray-500 sm:mb-0 dark:text-gray-400">
+                  <ul class="flex flex-wrap items-center mb-6 text-sm font-medium text-gray-500 sm:mb-0">
                       <li>
                           <a href="#" class="mr-4 hover:underline md:mr-6 ">About</a>
                       </li>
@@ -295,10 +333,10 @@
                       </li>
                   </ul>
               </div>
-              <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
-              <span class="block text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2023 <a href="#" class="hover:underline">Novel Terjemahan™</a>. All Rights Reserved.</span>
+              <hr class="my-6 border-gray-200 sm:mx-auto lg:my-8" />
+              <span class="block text-sm text-gray-500 sm:text-center">© 2023 <a href="#" class="hover:underline">Novel Terjemahan™</a>. All Rights Reserved.</span>
           </div>
-      </footer>
+        </footer>
 
     @vite('resources/js/app.js')
     </body>
