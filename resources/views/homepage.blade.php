@@ -92,7 +92,19 @@
                         @if (Route::has('login'))
                             <div class="sm:top-0 sm:right-0 p-6 text-right z-10">
                                 @auth
-                                    <a href="{{ url('/dashboard') }}" class="font-semibold text-gray-600 hover:text-gray-900">Dashboard</a>
+                                <div class="flex">
+                                    <a href="{{ url('/dashboard') }}" class="font-semibold text-gray-600 hover:text-gray-900">{{ Auth::user()->name }}</a>
+                                    <div class="mx-2">|</div>
+                                    <form class="cursor-pointer" method="POST" action="{{ route('logout') }}">
+                                        @csrf
+            
+                                        <a class="font-semibold text-gray-600 hover:text-gray-900" :href="route('logout')"
+                                                onclick="event.preventDefault();
+                                                            this.closest('form').submit();">
+                                            {{ __('Log Out') }}
+                                        </a>
+                                    </form>
+                                </div>
                                 @else
                                     <a href="{{ route('login') }}" class="font-semibold text-gray-600 hover:text-gray-900">Log in</a>
 

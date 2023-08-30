@@ -14,13 +14,26 @@
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
+                        <x-slot name="content">
+                            <div>Add novel</div>
+                            <div>Delete novel</div>
+                        </x-slot>
                     </x-nav-link>
                     <x-nav-link :href="route('request')" :active="request()->routeIs('request')">
                         {{ __('Request') }}
+                        <x-slot name="content">
+                            <div>Add request</div>
+                            <div>Delete request</div>
+                        </x-slot>
                     </x-nav-link>
                     <x-nav-link :href="route('member')" :active="request()->routeIs('member')">
                         {{ __('Member') }}
+                        <x-slot name="content">
+                            <div>Add member</div>
+                            <div>Delete member member</div>
+                        </x-slot>
                     </x-nav-link>
+                    
                 </div>
             </div>
 
@@ -75,6 +88,24 @@
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
+                <x-slot name="content">
+                    <div>Add novel</div>
+                    <div>Delete novel</div>
+                </x-slot>
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('request')" :active="request()->routeIs('request')">
+                {{ __('Request') }}
+                <x-slot name="content">
+                    <div>Add request</div>
+                    <div>Delete request</div>
+                </x-slot>
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('member')" :active="request()->routeIs('member')">
+                {{ __('Member') }}
+                <x-slot name="content">
+                    <div>Add member</div>
+                    <div>Delete member</div>
+                </x-slot>
             </x-responsive-nav-link>
         </div>
 
@@ -86,19 +117,19 @@
             </div>
 
             <div class="mt-3 space-y-1">
-                <x-responsive-nav-link :href="route('profile.edit')">
+                <a class="block w-full pl-3 pr-4 py-2 border-l-4 border-transparent text-left text-base font-medium text-gray-600 hover:text-gray-800 hover:bg-gray-50 hover:border-gray-300 focus:outline-none focus:text-gray-800 focus:bg-gray-50 focus:border-gray-300 transition duration-150 ease-in-out" href="route('profile.edit')">
                     {{ __('Profile') }}
-                </x-responsive-nav-link>
+                </a>
 
                 <!-- Authentication -->
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
 
-                    <x-responsive-nav-link :href="route('logout')"
+                    <a class="block w-full pl-3 pr-4 py-2 border-l-4 border-transparent text-left text-base font-medium text-gray-600 hover:text-gray-800 hover:bg-gray-50 hover:border-gray-300 focus:outline-none focus:text-gray-800 focus:bg-gray-50 focus:border-gray-300 transition duration-150 ease-in-out" href="route('logout')"
                             onclick="event.preventDefault();
                                         this.closest('form').submit();">
                         {{ __('Log Out') }}
-                    </x-responsive-nav-link>
+                    </a>
                 </form>
             </div>
         </div>
