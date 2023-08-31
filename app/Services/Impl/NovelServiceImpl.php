@@ -8,7 +8,7 @@ use App\Services\NovelService;
 class NovelServiceImpl implements NovelService{
 
     public function getAllNovel(){
-        return Novel::all();
+        return Novel::paginate(10);
     }
 
     public function addNovel(string $avatar, string $judul, string $link){

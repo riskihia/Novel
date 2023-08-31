@@ -234,6 +234,10 @@
               </li>
             @endforelse
           </ul>
+
+          <div class="container mx-auto px-6">
+            {{$novels->links()}}
+          </div>
         </div>
 
 
