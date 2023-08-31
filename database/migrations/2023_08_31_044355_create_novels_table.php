@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('novels', function (Blueprint $table) {
             $table->id();
+            $table->string('avatar')->nullable("false");
+            $table->string('judul')->require()->unique();
+            $table->string('link')->require();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

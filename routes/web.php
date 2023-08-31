@@ -37,7 +37,7 @@ Route::get('/request', function () {
 Route::resource("novels", NovelController::class)->middleware(['auth', 'verified'])->names([
     "index" => "novels",
     "create" => "novels-create",
-
+    "store" => "novels-store"
 ]);
 
 Route::get('/member', [UserController::class, "index"])->middleware(['auth', 'verified'])->name('member');

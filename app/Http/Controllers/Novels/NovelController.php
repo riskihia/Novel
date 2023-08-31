@@ -31,6 +31,20 @@ class NovelController extends Controller
     public function store(Request $request)
     {
         //
+        $request->validate([
+            'judul' => 'required|string',
+            'link' => 'required',
+            'avatar' => 'required|image|mimes:jpeg,png|max:1000', // Maksimal 2MB
+        ]);
+        $extFile = $request->avatar->getClientOriginalExtension();
+        $namaFile = $request->user()->name."-".time().".".$extFile;
+        $path = $request->avatar->storeAs('public',$namaFile);
+        echo "Proses upload berhasil, file berada di: $path";
+        $pathBaru = asset('storage/'.$namaFile);
+        echo "Proses upload berhasil, file berada di: <a href='$pathBaru'>
+        $pathBaru</a>";
+        // echo "eko";
+        // dd($request->avatar);
     }
 
     /**
