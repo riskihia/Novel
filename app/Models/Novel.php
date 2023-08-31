@@ -12,4 +12,10 @@ class Novel extends Model
     protected $table = "Novels";
     protected $keyType = "string";
     public $timestamps = true;
+
+    protected $fillable = [
+        'judul',
+        'avatar',
+        'link',
+    ];
 }

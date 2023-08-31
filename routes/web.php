@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\HomepageController;
 use App\Http\Controllers\Novels\NovelController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
@@ -16,15 +17,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('homepage');
-})->name("homepage");
-// Route::get('/riski-login', function () {
-//     return view('riski.login');
-// });
-// Route::get('/riski-home', function () {
-//     return view('riski.homepage');
-// })->name("riski-homepage"); 
+Route::get('/', [HomepageController::class, "index"])->name("homepage");
 
 Route::get('/dashboard', function () {
     return view('dashboard');

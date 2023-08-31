@@ -3,17 +3,27 @@
 namespace App\Http\Controllers\Novels;
 
 use App\Http\Controllers\Controller;
+use App\Services\NovelService;
 use Illuminate\Http\Request;
 
 class NovelController extends Controller
 {
+    private NovelService $novelService;
+
+    public function __construct(NovelService $novelService)
+    {
+        $this->novelService = $novelService;
+    }
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
         //
-        return response()->view("components.novels.show-novel");
+        $novels = $this->novelService->getAllNovel();
+        return response()->view("components.novels.show-novel",[
+            "novels" => $novels 
+        ]);
     }
 
     /**
@@ -22,6 +32,7 @@ class NovelController extends Controller
     public function create()
     {
         //
+        
         return response()->view("components.novels.add-novel");
     }
 
@@ -32,19 +43,22 @@ class NovelController extends Controller
     {
         //
         $request->validate([
-            'judul' => 'required|string',
+            'judul' => 'required|string|max:200',
             'link' => 'required',
             'avatar' => 'required|image|mimes:jpeg,png|max:1000', // Maksimal 2MB
         ]);
+        $judul = $request->input("judul");
+        $avatar = $request->input("avatar");
+        $link = $request->input("link");
+
         $extFile = $request->avatar->getClientOriginalExtension();
         $namaFile = $request->user()->name."-".time().".".$extFile;
         $path = $request->avatar->storeAs('public',$namaFile);
-        echo "Proses upload berhasil, file berada di: $path";
         $pathBaru = asset('storage/'.$namaFile);
-        echo "Proses upload berhasil, file berada di: <a href='$pathBaru'>
-        $pathBaru</a>";
-        // echo "eko";
-        // dd($request->avatar);
+
+        $this->novelService->addNovel($pathBaru, $judul, $link);
+
+        return redirect()->route("novels");
     }
 
     /**
