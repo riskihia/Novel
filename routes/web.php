@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Novels\NovelController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -28,9 +29,16 @@ Route::get('/', function () {
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
+
 Route::get('/request', function () {
     return view('request');
 })->middleware(['auth', 'verified'])->name('request');
+
+Route::resource("novels", NovelController::class)->middleware(['auth', 'verified'])->names([
+    "index" => "novels",
+    "create" => "novels-create",
+
+]);
 
 Route::get('/member', [UserController::class, "index"])->middleware(['auth', 'verified'])->name('member');
 // Route::get('/member', function () {

@@ -24,7 +24,7 @@ $classes = ($active ?? false)
             x-transition:leave-start="opacity-100 scale-100"
             x-transition:leave-end="opacity-0 scale-95"
 
-            class="absolute -bottom-1/2 w-48 right-0 bg-white p-1 rounded-md shadow-lg"
+            class="absolute -bottom-3/4 w-48 right-0 bg-white rounded-md shadow-lg"
             style="display: none"
         >
             {{$content}}

@@ -5,7 +5,7 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
-                    <a href="{{ route('dashboard') }}">
+                    <a href="{{ route('homepage') }}">
                         <x-application-logo class="block h-9 w-auto fill-current text-gray-800" />
                     </a>
                 </div>
@@ -15,22 +15,33 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                         <x-slot name="content">
-                            <div>Add novel</div>
-                            <div>Delete novel</div>
+                            <x-dropdown-link>Add novel</x-dropdown-link>
+                            <x-dropdown-link>Show novel</x-dropdown-link>
+                            <x-dropdown-link>Edit novel</x-dropdown-link>
+                            <x-dropdown-link>Delete novel</x-dropdown-link>
                         </x-slot>
                     </x-nav-link>
                     <x-nav-link :href="route('request')" :active="request()->routeIs('request')">
                         {{ __('Request') }}
                         <x-slot name="content">
-                            <div>Add request</div>
-                            <div>Delete request</div>
+                            <x-dropdown-link>Add request</x-dropdown-link>
+                            <x-dropdown-link>Delete request</x-dropdown-link>
                         </x-slot>
                     </x-nav-link>
                     <x-nav-link :href="route('member')" :active="request()->routeIs('member')">
                         {{ __('Member') }}
                         <x-slot name="content">
-                            <div>Add member</div>
-                            <div>Delete member member</div>
+                            <x-dropdown-link>Add member</x-dropdown-link>
+                            <x-dropdown-link>Delete member member</x-dropdown-link>
+                        </x-slot>
+                    </x-nav-link>
+
+                    <x-nav-link :href="route('novels')" :active="request()->routeIs('novels') || request()->routeIs('novels-create')">
+                        {{ __('Novels') }}
+                        <x-slot name="content">
+                            <x-dropdown-link :href="route('novels')">Show Novel</x-dropdown-link>
+
+                            <x-dropdown-link :href="route('novels-create')">Add Novel</x-dropdown-link>
                         </x-slot>
                     </x-nav-link>
                     
@@ -89,22 +100,31 @@
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
                 <x-slot name="content">
-                    <div>Add novel</div>
-                    <div>Delete novel</div>
+                    <x-dropdown-link>Add novel</x-dropdown-link>
+                    <x-dropdown-link>Delete novel</x-dropdown-link>
                 </x-slot>
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('request')" :active="request()->routeIs('request')">
                 {{ __('Request') }}
                 <x-slot name="content">
-                    <div>Add request</div>
-                    <div>Delete request</div>
+                    <x-dropdown-link>Add request</x-dropdown-link>
+                    <x-dropdown-link>Show request</x-dropdown-link>
                 </x-slot>
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('member')" :active="request()->routeIs('member')">
                 {{ __('Member') }}
                 <x-slot name="content">
-                    <div>Add member</div>
-                    <div>Delete member</div>
+                    <x-dropdown-link>Add member</x-dropdown-link>
+                    <x-dropdown-link>Delete member</x-dropdown-link>
+                </x-slot>
+            </x-responsive-nav-link>
+
+            <x-responsive-nav-link :href="route('novels')" :active="request()->routeIs('novels') || request()->routeIs('novels-create')">
+                {{ __('Novels') }}
+                <x-slot name="content">
+                    <x-dropdown-link :href="route('novels')">Show Novel</x-dropdown-link>
+
+                    <x-dropdown-link :href="route('novels-create')">Add Novel</x-dropdown-link>
                 </x-slot>
             </x-responsive-nav-link>
         </div>
