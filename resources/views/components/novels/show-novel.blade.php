@@ -22,8 +22,15 @@
                                 <a href="{{$novel->link}}" class="mt-1 truncate text-xs leading-5 text-gray-500">{{$novel->judul}}</a>
                               </div>
                             </div>
-                            <div class="hidden shrink-0 sm:flex sm:flex-col sm:items-end">
-                              <p class="text-sm leading-6 text-gray-900">Co-Founder / CEO</p>
+                            <div class="shrink-0 sm:flex sm:flex-col sm:items-end">
+                              <div>
+                                <span class="text-sm leading-6 text-gray-900 px-2 py-1 bg-yellow-200 rounded-md">Edit</span>
+                                <form action="{{route("novels-delete", $novel->id)}}" method="POST" class="inline">
+                                  @method("DELETE")
+                                  @csrf
+                                  <button type="submit" class="inline text-sm leading-6 text-gray-900 px-2 py-1 bg-red-200 rounded-md">Delete</button>
+                                </form>
+                              </div>
                               <p class="mt-1 text-xs leading-5 text-gray-500">{{$novel->updated_at->diffForHumans()}}</p>
                             </div>
                           </li>

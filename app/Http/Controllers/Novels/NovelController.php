@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Novels;
 
 use App\Http\Controllers\Controller;
 use App\Services\NovelService;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 class NovelController extends Controller
@@ -48,13 +49,13 @@ class NovelController extends Controller
             'avatar' => 'required|image|mimes:jpeg,png|max:1000', // Maksimal 2MB
         ]);
         $judul = $request->input("judul");
-        $avatar = $request->input("avatar");
         $link = $request->input("link");
 
-        $extFile = $request->avatar->getClientOriginalExtension();
-        $namaFile = $request->user()->name."-".time().".".$extFile;
-        $path = $request->avatar->storeAs('public',$namaFile);
-        $pathBaru = asset('storage/'.$namaFile);
+        // $extFile = $request->avatar->getClientOriginalExtension();
+        // $namaFile = $request->user()->name."-".time().".".$extFile;
+        // $path = $request->avatar->storeAs('public',$namaFile);
+        // $pathBaru = asset('storage/'.$namaFile);
+        $pathBaru = $this->novelService->uploadAvatarAndGetPath($request);
 
         $this->novelService->addNovel($pathBaru, $judul, $link);
 
@@ -88,8 +89,10 @@ class NovelController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(string $id): RedirectResponse
     {
         //
+        $this->novelService->deleteNovel($id);
+        return redirect()->route('novels')->with('success', 'Novel berhasil dihapus');
     }
 }
