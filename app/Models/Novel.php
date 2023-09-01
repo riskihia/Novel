@@ -9,7 +9,7 @@ class Novel extends Model
 {
     use HasFactory;
 
-    protected $table = "Novels";
+    protected $table = "novels";
     protected $keyType = "string";
     public $timestamps = true;
 

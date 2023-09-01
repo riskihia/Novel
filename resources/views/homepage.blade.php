@@ -64,11 +64,12 @@
                   {{-- <a href="/login" class="text-sm font-semibold leading-6 text-gray-900">Log in <span aria-hidden="true">&rarr;</span></a> --}}
                 </div>
               </nav>
+
               <!-- Mobile menu, show/hide based on menu open state. -->
               <div id="navMobile" class="hidden">
                 <!-- Background backdrop, show/hide based on slide-over state. -->
-                <div class="fixed inset-0 z-50"></div>
-                <div class="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
+                <div id="sidebar-backdrop" class="fixed inset-0 z-50"></div>
+                <div class="fixed inset-y-0 left-0 z-50 w-1/2 overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
                   <div class="flex items-center justify-between">
                     <a href="#" class="-m-1.5 p-1.5">
                       Logo
@@ -84,15 +85,18 @@
                     <div class="-my-6 divide-y divide-gray-500/10">
                       <div class="space-y-2 py-6">
                         <a href="#HOME" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Home</a>
+
                         <a href="#FEATURES" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Features</a>
+
                         <a href="#LIST-NOVEL" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">List Novel</a>
+
                         <a href="#REQUEST" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Request</a>
                       </div>
                       <div class="py-6">
                         @if (Route::has('login'))
-                            <div class="sm:top-0 sm:right-0 p-6 text-right z-10">
+                            <div class="sm:inset-0 text-center z-10 w-full">
                                 @auth
-                                <div class="flex">
+                                <div class="flex w-full">
                                     <a href="{{ url('/dashboard') }}" class="font-semibold text-gray-600 hover:text-gray-900">{{ Auth::user()->name }}</a>
                                     <div class="mx-2">|</div>
                                     <form class="cursor-pointer" method="POST" action="{{ route('logout') }}">
