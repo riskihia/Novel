@@ -44,7 +44,7 @@
                               <form class="cursor-pointer" method="POST" action="{{ route('logout') }}">
                                   @csrf
       
-                                  <a class="font-semibold text-gray-600 hover:text-gray-900" :href="route('logout')"
+                                  <a class="rounded-md shadow-sm bg-red-600 px-3.5 py-2.5 text-sm font-semibold text-white" :href="route('logout')"
                                           onclick="event.preventDefault();
                                                       this.closest('form').submit();">
                                       {{ __('Log Out') }}
@@ -102,7 +102,7 @@
                                     <form class="cursor-pointer" method="POST" action="{{ route('logout') }}">
                                         @csrf
             
-                                        <a class="font-semibold text-gray-600 hover:text-gray-900" :href="route('logout')"
+                                        <a class="rounded-md shadow-sm bg-red-600 px-3.5 py-2.5 text-sm font-semibold text-white" :href="route('logout')"
                                                 onclick="event.preventDefault();
                                                             this.closest('form').submit();">
                                             {{ __('Log Out') }}
@@ -110,10 +110,10 @@
                                     </form>
                                 </div>
                                 @else
-                                    <a href="{{ route('login') }}" class="font-semibold text-gray-600 hover:text-gray-900">Log in</a>
+                                    <a href="{{ route('login') }}" class="rounded-md shadow-sm bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white">Log in</a>
 
                                     @if (Route::has('register'))
-                                        <a href="{{ route('register') }}" class="ml-4 font-semibold text-gray-600 hover:text-gray-900">Register</a>
+                                        <a href="{{ route('register') }}" class="rounded-md shadow-sm bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white ">Register</a>
                                     @endif
                                 @endauth
                             </div>
@@ -138,7 +138,7 @@
                   <p class="mt-6 text-lg leading-8 text-gray-600">Merayakan keindahan dan keajaiban terjemahan novel. Menyajikan cerita global dalam bahasa lokal, menghubungkan jiwa penikmat kata ke dunia yang tak terbatas.</p>
                   <div class="mt-10 flex items-center justify-center gap-x-6">
                     <a href="#" class="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Join Komunitas</a>
-                    <a href="#" class="text-sm font-semibold leading-6 text-gray-900">Selengkapnya <span aria-hidden="true">→</span></a>
+                    <a href="#" class="text-sm font-semibold leading-6 text-gray-900">Selengkapnya <span aria-hidden="true">→</span></a>                    
                   </div>
                 </div>
               </div>

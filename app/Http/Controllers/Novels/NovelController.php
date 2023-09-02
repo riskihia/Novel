@@ -46,7 +46,7 @@ class NovelController extends Controller
         $request->validate([
             'judul' => 'required|string|max:200',
             'link' => 'required',
-            'avatar' => 'required|image|mimes:jpeg,png|max:1000', // Maksimal 2MB
+            'avatar' => 'image|mimes:jpeg,png|max:1000', // Maksimal 2MB
         ]);
         $judul = $request->input("judul");
         $link = $request->input("link");
@@ -76,6 +76,8 @@ class NovelController extends Controller
     public function edit(string $id)
     {
         //
+        $novel = $this->novelService->getNovelById($id);
+        return view('components.novels.edit', compact('novel'));
     }
 
     /**
@@ -84,6 +86,26 @@ class NovelController extends Controller
     public function update(Request $request, string $id)
     {
         //
+        $request->validate([
+            'judul' => 'required|string|max:200',
+            'link' => 'required',
+            'avatar' => 'image|mimes:jpeg,png|max:1000', // Maksimal 2MB
+        ]);
+    
+        $novel = $this->novelService->getNovelById($id);
+        $novel->judul = $request->judul;
+        $novel->link = $request->link;
+    
+        // Cek apakah ada gambar avatar yang diunggah
+        if ($request->hasFile('avatar')) {
+            $deleteAvatar = $this->novelService->deleteAvatarNovel(basename($novel->avatar));
+            $pathBaru = $this->novelService->uploadAvatarAndGetPath($request);
+            $novel->avatar = $pathBaru;
+        }
+    
+        $novel->save();
+    
+        return redirect()->route('novels')->with('success', 'Novel berhasil diperbarui');
     }
 
     /**

@@ -10,7 +10,12 @@ use Illuminate\Support\Facades\Storage;
 class NovelServiceImpl implements NovelService{
 
     public function getAllNovel(){
-        return Novel::paginate(10);
+        return Novel::orderBy('created_at', 'desc')->paginate(10);
+    }
+
+    public function getNovelById(string $id)
+    {
+        return Novel::findOrFail($id);
     }
 
     public function addNovel(string $avatar, string $judul, string $link){
@@ -37,19 +42,24 @@ class NovelServiceImpl implements NovelService{
         return $pathBaru;
     }
 
+    public function deleteAvatarNovel(string $namaFile)
+    {
+        // $namaFile = basename($namaFile);
+        $isImageExist = Storage::disk('public')->exists($namaFile);
+
+        if ($isImageExist) {
+            Storage::disk('public')->delete($namaFile);
+        }
+    }
+
     public function deleteNovel(string $id){
         $novel = Novel::findOrFail($id);
 
         if (!$novel) {
             return redirect()->route('novels')->with('error', 'Novel tidak ditemukan');
         }
-        $namaFile = basename($novel->avatar);
-        $isImageExist = Storage::disk('public')->exists($namaFile);
-
-        // Hapus gambar avatar jika ada
-        if ($isImageExist) {
-            Storage::disk('public')->delete($namaFile);
-        }
+        
+        $this->deleteAvatarNovel(basename($novel->avatar));
 
         $novel->delete();
     }
