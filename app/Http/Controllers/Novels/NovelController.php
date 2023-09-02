@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Services\NovelService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class NovelController extends Controller
 {
@@ -43,21 +44,30 @@ class NovelController extends Controller
     public function store(Request $request)
     {
         //
-        $request->validate([
+        $validator = Validator::make($request->all(),[
             'judul' => 'required|string|max:200',
             'link' => 'required',
-            'avatar' => 'image|mimes:jpeg,png|max:1000', // Maksimal 2MB
+            'avatar' => 'image|mimes:jpeg,png|max:1000', 
+            'tags' => [
+                'nullable',
+                'string',
+                'regex:/^(#(\w+)(\s+#\w+){0,9})?$/i', // Hanya menerima maksimal 10 tag yang diawali dengan #
+                'max:100', // Maksimal 100 karakter
+            ],
         ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+
         $judul = $request->input("judul");
         $link = $request->input("link");
+        $tags = $request->input("tags");
+        // dd($tags);
 
-        // $extFile = $request->avatar->getClientOriginalExtension();
-        // $namaFile = $request->user()->name."-".time().".".$extFile;
-        // $path = $request->avatar->storeAs('public',$namaFile);
-        // $pathBaru = asset('storage/'.$namaFile);
         $pathBaru = $this->novelService->uploadAvatarAndGetPath($request);
 
-        $this->novelService->addNovel($pathBaru, $judul, $link);
+        $this->novelService->addNovel($pathBaru, $judul, $link, $tags);
 
         return redirect()->route("novels");
     }

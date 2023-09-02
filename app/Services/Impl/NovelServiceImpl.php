@@ -18,11 +18,24 @@ class NovelServiceImpl implements NovelService{
         return Novel::findOrFail($id);
     }
 
-    public function addNovel(string $avatar, string $judul, string $link){
+    public function addNovel(string $avatar, string $judul, string $link, string $tags){
+
+        // Memisahkan tag yang diawali dengan '#'
+        preg_match_all('/#(\w+)/', $tags, $tagMatches);
+        
+        // Mengambil array tag dari hasil pencocokan
+        $tagsArray = $tagMatches[1];
+
+        // Menggabungkan tag menjadi satu string dengan pemisah koma
+        $tagsString = implode(',', $tagsArray);
+
+        
+        // dd($tagsString);
         Novel::create([
             'avatar' => $avatar,
             'judul' => $judul,
             'link' => $link,
+            'tags' => $tagsString,
         ]);
         return "berhasil add novel";
     }

@@ -31,6 +31,9 @@
                               <div class="mt-2">
                                 <input id="judul" name="judul" type="judul" required class="block w-full rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                               </div>
+                              @error('judul')
+                                    <span class="text-red-500">{{$message}} error </span>
+                              @enderror
                             </div>
                       
                             <div>
@@ -38,6 +41,17 @@
                               <div class="mt-2">
                                 <input id="link-novel" name="link" type="link-novel"  required class="block w-full rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                               </div>
+                              @error('link')
+                                    <span class="text-red-500">{{$message}} error </span>
+                              @enderror
+                            </div>
+
+                            <div>
+                              <label for="tags">Tag (Maksimal 10, diawali dengan #):</label>
+                              <textarea name="tags" rows="4" cols="50" maxlength="100"></textarea>
+                              @error('tags')
+                                    <span class="text-red-500">{{$message}} error </span>
+                              @enderror
                             </div>
                       
                             <div>

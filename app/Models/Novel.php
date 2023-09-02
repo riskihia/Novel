@@ -17,5 +17,6 @@ class Novel extends Model
         'judul',
         'avatar',
         'link',
+        'tags'
     ];
 }

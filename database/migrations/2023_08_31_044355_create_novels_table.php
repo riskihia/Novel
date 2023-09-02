@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('avatar')->nullable("false");
             $table->string('judul')->require()->unique();
             $table->string('link')->require();
+            $table->text('tags')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });
