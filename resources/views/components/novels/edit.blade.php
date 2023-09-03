@@ -39,9 +39,19 @@
                                 <input id="link-novel" name="link" type="link-novel" value="{{$novel->link}}"  required class="block w-full rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                               </div>
                             </div>
+
+                            <div>
+                              @foreach ($allTags as $tag)
+                                <div class="flex items-center">
+                                    <input name="tags[]" id="{{$tag->nama}}" type="checkbox" value="{{$tag->nama}}" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500" 
+                                    @if(in_array($tag->nama, $selectedTags)) checked @endif>
+                                    <label for="{{$tag->nama}}" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">{{$tag->nama}}</label>
+                                </div>
+                              @endforeach
+                            </div>
                       
                             <div>
-                              <button type="submit" class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Request</button>
+                              <button type="submit" class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Update Novel</button>
                             </div>
                         </form>
                     </div>

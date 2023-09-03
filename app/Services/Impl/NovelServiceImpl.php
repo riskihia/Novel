@@ -3,6 +3,7 @@
 namespace App\Services\Impl;
 
 use App\Models\Novel;
+use App\Models\Tag;
 use App\Services\NovelService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -18,25 +19,28 @@ class NovelServiceImpl implements NovelService{
         return Novel::findOrFail($id);
     }
 
-    public function addNovel(string $avatar, string $judul, string $link, string $tags){
-
-        // Memisahkan tag yang diawali dengan '#'
-        preg_match_all('/#(\w+)/', $tags, $tagMatches);
-        
-        // Mengambil array tag dari hasil pencocokan
-        $tagsArray = $tagMatches[1];
-
-        // Menggabungkan tag menjadi satu string dengan pemisah koma
-        $tagsString = implode(',', $tagsArray);
-
+    public function addNovel(string $avatar, string $judul, string $link, array $tags){
         
         // dd($tagsString);
+
         Novel::create([
             'avatar' => $avatar,
             'judul' => $judul,
             'link' => $link,
-            'tags' => $tagsString,
         ]);
+        $novel = Novel::where("judul", $judul)->first();
+        
+        $tagIds = [];
+        foreach ($tags as $tagName) {
+            $tag = Tag::where("nama", $tagName)->first();
+            if ($tag) {
+                $tagIds[] = $tag->id;
+            }
+        }
+
+        $novel->tags()->attach($tagIds);
+        
+
         return "berhasil add novel";
     }
 

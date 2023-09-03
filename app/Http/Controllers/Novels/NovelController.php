@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Novels;
 
 use App\Http\Controllers\Controller;
+use App\Models\Novel;
 use App\Services\NovelService;
 use App\Services\TagService;
 use Illuminate\Http\RedirectResponse;
@@ -19,6 +20,22 @@ class NovelController extends Controller
         $this->novelService = $novelService;
         $this->tagService = $tagService;
     }
+
+    public function search(Request $request)
+    {
+        $searchQuery = $request->input('cari-novel');
+
+        $novels = Novel::where('judul', 'like', "%$searchQuery%")->paginate(10);
+
+
+        return response()->view("components.novels.show-novel",[
+            "novels" => $novels,
+            "searchQuery" => $searchQuery
+        ]);
+        // return view('show-novel', compact('novels', 'searchQuery'));
+    }
+
+
     /**
      * Display a listing of the resource.
      */
@@ -48,17 +65,14 @@ class NovelController extends Controller
     public function store(Request $request)
     {
         //
+        
         $validator = Validator::make($request->all(),[
             'judul' => 'required|string|max:200',
             'link' => 'required',
-            'avatar' => 'image|mimes:jpeg,png|max:1000', 
-            'tags' => [
-                'nullable',
-                'string',
-                'regex:/^(#(\w+)(\s+#\w+){0,9})?$/i', // Hanya menerima maksimal 10 tag yang diawali dengan #
-                'max:100', // Maksimal 100 karakter
-            ],
+            'avatar' => 'image|mimes:jpeg,png|max:1000',
+            "tags" => 'required|array'
         ]);
+        
 
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
@@ -91,7 +105,10 @@ class NovelController extends Controller
     {
         //
         $novel = $this->novelService->getNovelById($id);
-        return view('components.novels.edit', compact('novel'));
+        $allTags = $this->tagService->getAllTags(); // Ambil semua tag
+        $selectedTags = $novel->tags()->pluck('nama')->toArray(); // Ambil tag yang terkait dengan novel
+        // dd($selectedTags);
+        return view('components.novels.edit', compact('novel', 'allTags', 'selectedTags'));
     }
 
     /**
@@ -104,6 +121,7 @@ class NovelController extends Controller
             'judul' => 'required|string|max:200',
             'link' => 'required',
             'avatar' => 'image|mimes:jpeg,png|max:1000', // Maksimal 2MB
+            'tags' => 'required|array',
         ]);
     
         $novel = $this->novelService->getNovelById($id);
@@ -118,6 +136,10 @@ class NovelController extends Controller
         }
     
         $novel->save();
+        $tags = $request->input('tags');
+
+        $tagIds = $this->tagService->getIdTags($tags);
+        $novel->tags()->sync($tagIds);
     
         return redirect()->route('novels')->with('success', 'Novel berhasil diperbarui');
     }

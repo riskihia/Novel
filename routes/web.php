@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [HomepageController::class, "index"])->name("homepage");
+Route::post('/homepage-search-novel', [HomepageController::class, "search"])->name("homepage-search");
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -26,6 +27,9 @@ Route::get('/dashboard', function () {
 Route::get('/request', function () {
     return view('request');
 })->middleware(['auth', 'verified'])->name('request');
+
+// route novel
+Route::post('/search-novel', [NovelController::class, "search"])->name('search-novel');
 
 Route::resource("novels", NovelController::class)->middleware(['auth', 'verified'])->names([
     "index" => "novels",
