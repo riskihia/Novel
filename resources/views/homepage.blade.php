@@ -4,6 +4,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="csrf-token" content="{{ csrf_token() }}">
         <title>Novel Terjemahan</title>
         @vite('resources/css/app.css')
     </head>
@@ -208,8 +209,7 @@
         <div id="LIST-NOVEL" class="container md:w-3/4 mx-auto p-2 md:p-0">
 
           <div>
-            <form action="{{route("homepage-search")}}" method="POST">
-              @csrf   
+            <form>
               <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
               <div class="relative">
                   <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
@@ -217,13 +217,15 @@
                           <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
                       </svg>
                   </div>
-                  <input type="search" id="default-search" value="{{$searchQuery ?? ""}}" name="cari-novel" class="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search Mockups, Logos...">
+                  <input type="search" id="default-search" value="{{$searchQuery ?? ""}}" name="cari-novel" class="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500" placeholder="Search Mockups, Logos...">
                   
-                  <button type="submit" class="text-white absolute right-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Search</button>
+                  <button id="tombol-click" class="text-white absolute right-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2">Search</button>
               </div>
             </form>
           </div>
+          <div id="hasilnya">
 
+          </div>
           <h1 class="text-2xl">List novel terjemahan</h1>
           <ul role="list" class="divide-y divide-gray-100">
             @forelse ($novels as $novel)
@@ -323,5 +325,50 @@
         </footer>
 
     @vite('resources/js/app.js')
+
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#default-search').on('input', function () {
+                var searchQuery = $(this).val();
+                console.log(searchQuery);
+                $.ajax({
+                    type: 'POST',
+                    url: '{{ route('homepage-search') }}',
+                    data: {
+                        '_token': '{{ csrf_token() }}',
+                        'searchQuery': searchQuery
+                    },
+                    success: function (response) {
+                        var novels = response.novels;
+                        console.log(novels);
+                        console.log(novels.length);
+                        $('#hasilnya').html('');
+                        // $('#hasilnya').append('<p>' + novels.data[0].judul + '</p>');
+                        if (novels.length > 0) {
+                            novels.forEach(function (novel) {
+                              console.log(novel);
+                              $('#hasilnya').append('<p>' + novel.judul + '</p>');
+                            });
+                        } else {
+                            // Handle the case when there are no search results
+                            $('#hasilnya').html('No results found.');
+                        }
+                    }
+                });
+                // tombol-click
+                $("#tombol-click").on("click", function (e) {
+                    // e.preventDefault();
+                    
+                    var searchQuery = $(this).val();
+                    window.location.href = '{{ route('search-novel') }}?cari-novel=' + searchQuery;
+                    return false;
+                });
+                
+            });
+        });
+    </script>
     </body>
 </html>

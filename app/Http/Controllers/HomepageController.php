@@ -17,16 +17,25 @@ class HomepageController extends Controller
 
     public function search(Request $request)
     {
-        $searchQuery = $request->input('cari-novel');
+        $searchQuery = $request->input('searchQuery');
 
+        $novels = Novel::where('judul', 'like', "%$searchQuery%")
+            ->take(5) // Limit the results to 5
+            ->get();
+
+        return response()->json(['novels' => $novels]);
+    }
+    public function cari(Request $request)
+    {
+        $searchQuery = $request->query('cari-novel');
         $novels = Novel::where('judul', 'like', "%$searchQuery%")->paginate(10);
+        // Your code to perform the search with $searchQuery here
 
-
-        return response()->view("homepage",[
+        return view('homepage', [
             "novels" => $novels,
-            "searchQuery" => $searchQuery
+            'searchQuery' => $searchQuery,
+            // Other data you want to pass to the view
         ]);
-        // return view('show-novel', compact('novels', 'searchQuery'));
     }
     //
     public function index(){
