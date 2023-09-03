@@ -5,9 +5,9 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Novel>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Tag>
  */
-class NovelFactory extends Factory
+class TagFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -16,10 +16,9 @@ class NovelFactory extends Factory
      */
     public function definition(): array
     {
+        $namanya = fake()->firstName()."_".fake()->lastName();
         return [
-            'avatar' => fake()->filePath(),
-            'judul' => fake()->name(),
-            'link' => fake()->url(),
+            'nama' => $namanya,
         ];
     }
 }

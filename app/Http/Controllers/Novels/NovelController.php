@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Novels;
 
 use App\Http\Controllers\Controller;
 use App\Services\NovelService;
+use App\Services\TagService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -11,10 +12,12 @@ use Illuminate\Support\Facades\Validator;
 class NovelController extends Controller
 {
     private NovelService $novelService;
+    private TagService $tagService;
 
-    public function __construct(NovelService $novelService)
+    public function __construct(NovelService $novelService, TagService $tagService)
     {
         $this->novelService = $novelService;
+        $this->tagService = $tagService;
     }
     /**
      * Display a listing of the resource.
@@ -35,7 +38,8 @@ class NovelController extends Controller
     {
         //
         
-        return response()->view("components.novels.add-novel");
+        $tags = $this->tagService->getAllTags();
+        return response()->view("components.novels.add-novel", compact("tags"));
     }
 
     /**

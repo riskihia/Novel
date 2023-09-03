@@ -6,22 +6,20 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
-class Novel extends Model
+class Tag extends Model
 {
     use HasFactory;
 
-    protected $table = "novels";
+    protected $table = "tags";
     protected $keyType = "string";
     public $timestamps = true;
 
-    public function tags(): BelongsToMany
+    public function novels(): BelongsToMany
     {
-        return $this->belongsToMany(Tag::class);
+        return $this->belongsToMany(Novel::class);
     }
 
     protected $fillable = [
-        'judul',
-        'avatar',
-        'link',
+        'nama',
     ];
 }

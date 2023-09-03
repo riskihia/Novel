@@ -11,12 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('novels', function (Blueprint $table) {
+        Schema::create('novel_tag', function (Blueprint $table) {
             $table->id();
-            $table->string('avatar')->nullable("false");
-            $table->string('judul')->require()->unique();
-            $table->string('link')->require();
-            $table->softDeletes();
+            $table->foreignId('novel_id')->constrained()->onDelete('cascade');
+            $table->foreignId('tag_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -26,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('novels');
+        Schema::dropIfExists('novel_tag');
     }
 };

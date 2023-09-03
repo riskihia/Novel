@@ -47,11 +47,20 @@
                             </div>
 
                             <div>
-                              <label for="tags">Tag (Maksimal 10, diawali dengan #):</label>
-                              <textarea name="tags" rows="4" cols="50" maxlength="100"></textarea>
-                              @error('tags')
-                                    <span class="text-red-500">{{$message}} error </span>
-                              @enderror
+                              @forelse ($tags as $tag)
+                                <div class="flex items-center">
+                                  {{-- Tambah attribut checked pada tag input --}}
+                                  <input id="{{$tag->nama}}" type="checkbox" value="{{$tag->nama}}" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                                  <label for="{{$tag->nama}}" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">{{$tag->nama}}</label>
+                                </div>
+                              @empty    
+                                @dd($tags)
+                                <div class="flex items-center mb-4">
+                                    <input id="default-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                    <label for="default-checkbox" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Default checkbox</label>
+                                </div>
+                              @endforelse
+                              
                             </div>
                       
                             <div>

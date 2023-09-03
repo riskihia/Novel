@@ -1,6 +1,7 @@
 <?php
 
 use App\Providers\NovelServiceProvider;
+use App\Providers\TagServiceProvider;
 use App\Providers\UserServiceProvider;
 use Illuminate\Support\Facades\Facade;
 use Illuminate\Support\ServiceProvider;
@@ -171,7 +172,8 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         UserServiceProvider::class,
-        NovelServiceProvider::class
+        NovelServiceProvider::class,
+        TagServiceProvider::class,
     ])->toArray(),
 
     /*
