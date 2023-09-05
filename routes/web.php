@@ -32,9 +32,9 @@ Route::get('/request', function () {
 })->middleware(['auth', 'verified'])->name('request');
 
 // route novel
-Route::post('/search-novel', [NovelController::class, "search"])->name('search-novel');
+Route::post('/search-novel', [NovelController::class, "search"])->middleware(['auth', 'verified', 'admin'])->name('search-novel');
 
-Route::resource("novels", NovelController::class)->middleware(['auth', 'verified'])->names([
+Route::resource("novels", NovelController::class)->middleware(['auth', 'verified', 'admin'])->names([
     "index" => "novels",
     "create" => "novels-create",
     "store" => "novels-store",
@@ -43,10 +43,7 @@ Route::resource("novels", NovelController::class)->middleware(['auth', 'verified
     "update" => "novels-update",
 ]);
 
-Route::get('/member', [UserController::class, "index"])->middleware(['auth', 'verified'])->name('member');
-// Route::get('/member', function () {
-//     return view('member');
-// })->middleware(['auth', 'verified'])->name('member');
+Route::get('/member', [UserController::class, "index"])->middleware(['auth', 'verified','admin'])->name('member');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
