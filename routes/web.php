@@ -25,7 +25,7 @@ Route::post('/cari-novel', [HomepageController::class, "cari"])->name("cari-nove
 
 Route::get('/dashboard', function () {
     return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+})->middleware(['auth', 'verified', 'admin'])->name('dashboard');
 
 Route::get('/request', function () {
     return view('request');

@@ -38,7 +38,9 @@ class HomepageController extends Controller
         ]);
     }
     //
-    public function index(){
+    public function index(Request $request){
+        // $data = $request->session()->all();
+        // dd($data);
         $novels = $this->novelService->getAllNovel();
         return response()->view("homepage",[
             "novels" => $novels 

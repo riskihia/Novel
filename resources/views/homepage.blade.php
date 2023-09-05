@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html class="h-full scroll-smooth bg-white" lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
