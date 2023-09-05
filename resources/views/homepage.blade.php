@@ -206,10 +206,11 @@
         </div>
         
         {{-- Section untuk list novel --}}
-        <div id="LIST-NOVEL" class="container md:w-3/4 mx-auto p-2 md:p-0">
+        <div id="LIST-NOVEL" class="container md:w-3/4 mx-auto p-2 md:p-0 relative">
 
           <div>
-            <form>
+            <form action="{{route("cari-novel")}}" method="POST">
+              @csrf
               <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
               <div class="relative">
                   <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
@@ -219,11 +220,11 @@
                   </div>
                   <input type="search" id="default-search" value="{{$searchQuery ?? ""}}" name="cari-novel" class="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500" placeholder="Search Mockups, Logos...">
                   
-                  <button id="tombol-click" class="text-white absolute right-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2">Search</button>
+                  <button type="submit" class="text-white absolute right-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2">Search</button>
               </div>
             </form>
           </div>
-          <div id="hasilnya">
+          <div id="hasilnya" class="absolute left-0 bg-white border border-gray-200 right-0">
 
           </div>
           <h1 class="text-2xl">List novel terjemahan</h1>
@@ -278,14 +279,14 @@
               <div>
                 <label for="judul" class="block text-sm font-medium leading-6 text-gray-900">Judul novel</label>
                 <div class="mt-2">
-                  <input id="judul" name="judul" type="judul" required class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                  <input id="judul" name="judul" type="judul" required class="block w-full rounded-md border-0 px-2 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                 </div>
               </div>
         
               <div>
                 <label for="link-novel" class="block text-sm font-medium leading-6 text-gray-900">Link novel</label>
                 <div class="mt-2">
-                  <input id="link-novel" name="link-novel" type="link-novel"  required class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                  <input id="link-novel" name="link-novel" type="link-novel"  required class="block w-full rounded-md border-0 px-2 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                 </div>
               </div>
         
@@ -336,7 +337,7 @@
                 console.log(searchQuery);
                 $.ajax({
                     type: 'POST',
-                    url: '{{ route('homepage-search') }}',
+                    url: '{{ route('input-search') }}',
                     data: {
                         '_token': '{{ csrf_token() }}',
                         'searchQuery': searchQuery
@@ -350,7 +351,14 @@
                         if (novels.length > 0) {
                             novels.forEach(function (novel) {
                               console.log(novel);
-                              $('#hasilnya').append('<p>' + novel.judul + '</p>');
+                              $('#hasilnya').append(
+                                '<form  action="{{route("cari-novel")}}" method="POST" class="inline">'+
+                                  '<input type="hidden" name="_token" value="{{ csrf_token() }}" />'+
+                                  '<input type="hidden" value="'+novel.judul+'" name="cari-novel">'+
+                                  '<button type="submit" class="block w-full p-1 pl-10 text-sm text-gray-900 rounded-lg cursor-pointer bg-white focus:ring-blue-500 focus:border-blue-500 hover:bg-gray-300">'
+                                   + novel.judul + 
+                                   '</button></form>'
+                                );
                             });
                         } else {
                             // Handle the case when there are no search results
@@ -358,15 +366,6 @@
                         }
                     }
                 });
-                // tombol-click
-                $("#tombol-click").on("click", function (e) {
-                    // e.preventDefault();
-                    
-                    var searchQuery = $(this).val();
-                    window.location.href = '{{ route('search-novel') }}?cari-novel=' + searchQuery;
-                    return false;
-                });
-                
             });
         });
     </script>

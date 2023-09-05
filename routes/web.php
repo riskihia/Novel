@@ -18,8 +18,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [HomepageController::class, "index"])->name("homepage");
-Route::post('/homepage-search-novel', [HomepageController::class, "search"])->name("homepage-search");
-Route::get('/search-novel', [HomepageController::class, "cari"])->name("search-novel");
+Route::post('/homepage-search-novel', [HomepageController::class, "search"])->name("input-search");
+Route::post('/cari-novel', [HomepageController::class, "cari"])->name("cari-novel");
 
 
 
