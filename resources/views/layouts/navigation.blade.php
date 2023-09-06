@@ -95,7 +95,7 @@
     </div>
 
     <!-- Responsive Navigation Menu -->
-    <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden fixed inset-y-0 left-0 z-50 w-1/2 overflow-y-auto bg-white shadow-lg">
+    <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden fixed inset-y-0 left-0 z-50 w-3/4 overflow-y-auto bg-white shadow-lg">
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
