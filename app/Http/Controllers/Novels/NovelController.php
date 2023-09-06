@@ -21,8 +21,29 @@ class NovelController extends Controller
         $this->tagService = $tagService;
     }
 
+    public function cariListNovel(Request $request)
+    {
+        $searchQuery = $request->input('cari-novel');
+        
+        
+        return redirect()->route('listNovel', ['cari-novel' => $searchQuery]);
+    }
+    public function listNovel(Request $request)
+    {
+        $searchQuery = $request->input('cari-novel');
+        if ($searchQuery) {
+            // Lakukan pencarian jika ada parameter query
+            $novels = Novel::where('judul', 'like', "%$searchQuery%")->paginate(10);
+        } else {
+            // Jika tidak ada parameter query, ambil semua novel
+            $novels = $this->novelService->getAllNovel();
+        }
+        // $novels = $this->novelService->getAllNovel();
+        return response()->view('listNovel', compact('novels'));
+    }
     public function viewNovel(Request $request, string $judulNovel)
     {
+        // dd($judulNovel);
         $novel = $this->novelService->getNovelByJudul($judulNovel);
         return response()->view('viewNovel', compact('novel'));
     }

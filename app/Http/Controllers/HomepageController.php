@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Novel;
 use App\Services\NovelService;
+use GuzzleHttp\Psr7\Response;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 class HomepageController extends Controller
@@ -28,22 +30,24 @@ class HomepageController extends Controller
     public function cari(Request $request)
     {
         $searchQuery = $request->input('cari-novel');
-
-        $novels = Novel::where('judul', 'like', "%$searchQuery%")->paginate(10);
-
-
-        return response()->view("homepage",[
-            "novels" => $novels,
-            "searchQuery" => $searchQuery
-        ]);
+        
+        return redirect()->route('homepage', ['cari-novel' => $searchQuery]);
     }
     //
     public function index(Request $request){
-        // $data = $request->session()->all();
-        // dd($data);
-        $novels = $this->novelService->getAllNovel();
-        return response()->view("homepage",[
-            "novels" => $novels 
+        $searchQuery = $request->input('cari-novel');
+
+        if ($searchQuery) {
+            // Lakukan pencarian jika ada parameter query
+            $novels = Novel::where('judul', 'like', "%$searchQuery%")->paginate(10);
+        } else {
+            // Jika tidak ada parameter query, ambil semua novel
+            $novels = $this->novelService->getAllNovel();
+        }
+        return view("homepage", [
+            "novels" => $novels,
+            "searchQuery" => $searchQuery
         ]);
+
     }
 }

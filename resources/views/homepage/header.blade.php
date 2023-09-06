@@ -19,7 +19,7 @@
         <a href="/" class="text-sm font-semibold leading-6 text-gray-900">Home</a>
         <a href="#FEATURES" class="text-sm font-semibold leading-6 text-gray-900">Library</a>
         <a href="#LIST-NOVEL" class="text-sm font-semibold leading-6 text-gray-900">Kategori</a>
-        <a href="#LIST-NOVEL" class="text-sm font-semibold leading-6 text-gray-900">List Novel</a>
+        <a href="/list-novel" class="text-sm font-semibold leading-6 text-gray-900">List Novel</a>
         <a href="#REQUEST" class="text-sm font-semibold leading-6 text-gray-900">Request</a>
       </div>
       <div class="hidden lg:flex lg:flex-1 lg:justify-end">
@@ -78,7 +78,7 @@
               
               <a href="#FEATURES" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Kategori</a>
 
-              <a href="#LIST-NOVEL" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">List Novel</a>
+              <a href="/list-novel" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">List Novel</a>
 
               <a href="#REQUEST" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Request</a>
             </div>

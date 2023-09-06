@@ -22,7 +22,7 @@
                             novels.forEach(function (novel) {
                               console.log(novel);
                               $('#hasilnya').append(
-                                '<form  action="{{route("cari-novel")}}" method="POST" class="inline">'+
+                                '<form action="{{ request()->is("/") ? route("cari-novel") : route("cari-list-novel")}}" method="POST" class="inline">'+
                                   '<input type="hidden" name="_token" value="{{ csrf_token() }}" />'+
                                   '<input type="hidden" value="'+novel.judul+'" name="cari-novel">'+
                                   '<button type="submit" class="block w-full p-1 pl-10 text-sm text-gray-900 rounded-lg cursor-pointer bg-white focus:ring-blue-500 focus:border-blue-500 hover:bg-gray-300">'

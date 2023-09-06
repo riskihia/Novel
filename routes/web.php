@@ -55,4 +55,7 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 
-Route::get('/{judulNovel}', [NovelController::class, "viewNovel"])->name('view-novel');
+Route::get('/list-novel', [NovelController::class, "listNovel"])->name('listNovel');
+Route::post('/cari-list-novel', [NovelController::class, "cariListNovel"])->name('cari-list-novel');
+
+Route::get('/{judulNovel}', [NovelController::class, "viewNovel"])->middleware(['validJudul'])->name('view-novel');
