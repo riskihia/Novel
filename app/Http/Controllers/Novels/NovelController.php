@@ -21,6 +21,12 @@ class NovelController extends Controller
         $this->tagService = $tagService;
     }
 
+    public function viewNovel(Request $request, string $judulNovel)
+    {
+        $novel = $this->novelService->getNovelByJudul($judulNovel);
+        return response()->view('viewNovel', compact('novel'));
+    }
+
     public function search(Request $request)
     {
         $searchQuery = $request->input('cari-novel');

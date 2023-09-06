@@ -10,6 +10,9 @@ use Illuminate\Support\Facades\Storage;
 
 class NovelServiceImpl implements NovelService{
 
+    public function getNovelByJudul(string $judulNovel){
+        return Novel::where("judul", $judulNovel)->first();
+    }
     public function getAllNovel(){
         return Novel::orderBy('created_at', 'desc')->paginate(10);
     }

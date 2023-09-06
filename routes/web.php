@@ -34,6 +34,7 @@ Route::get('/request', function () {
 // route novel
 Route::post('/search-novel', [NovelController::class, "search"])->middleware(['auth', 'verified', 'admin'])->name('search-novel');
 
+
 Route::resource("novels", NovelController::class)->middleware(['auth', 'verified', 'admin'])->names([
     "index" => "novels",
     "create" => "novels-create",
@@ -51,4 +52,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+
 require __DIR__.'/auth.php';
+
+Route::get('/{judulNovel}', [NovelController::class, "viewNovel"])->name('view-novel');
