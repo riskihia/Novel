@@ -14,3 +14,20 @@ if (closeButtonNav && openButtonNav && sidebarDrop) {
         navMobile.classList.add("hidden");
     });
 }
+
+var buttonGenre = document.getElementById("button-genre");
+var isiGenre = document.getElementById("isi-genre");
+
+var buttonAuthor = document.getElementById("button-author");
+var isiAuthor = document.getElementById("isi-author");
+
+if (buttonAuthor && buttonGenre) {
+    buttonAuthor.addEventListener("click", () => {
+        isiAuthor.classList.remove("hidden");
+        isiAuthor.classList.add("grid");
+    });
+    buttonGenre.addEventListener("click", () => {
+        isiGenre.classList.remove("hidden");
+        isiGenre.classList.add("grid");
+    });
+}

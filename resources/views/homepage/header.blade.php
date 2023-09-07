@@ -1,5 +1,5 @@
 <header class="absolute inset-x-0 top-0 z-50">
-    <nav class="flex items-center justify-between p-6 lg:px-8">
+    <nav class="flex items-center justify-between p-6 lg:px-8 bg-white">
       <div class="flex lg:flex-1">
         <a href="#" class="-m-1.5 p-1.5">
           {{-- <span class="sr-only">Your Company</span>
@@ -18,7 +18,7 @@
       <div class="hidden lg:flex lg:gap-x-12">
         <a href="/" class="text-sm font-semibold leading-6 text-gray-900">Home</a>
         <a href="#FEATURES" class="text-sm font-semibold leading-6 text-gray-900">Library</a>
-        <a href="#LIST-NOVEL" class="text-sm font-semibold leading-6 text-gray-900">Kategori</a>
+        <a href="/kategori" class="text-sm font-semibold leading-6 text-gray-900">Kategori</a>
         <a href="/list-novel" class="text-sm font-semibold leading-6 text-gray-900">List Novel</a>
         <a href="#REQUEST" class="text-sm font-semibold leading-6 text-gray-900">Request</a>
       </div>
@@ -76,7 +76,7 @@
 
               <a href="#FEATURES" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Library</a>
               
-              <a href="#FEATURES" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Kategori</a>
+              <a href="/kategori" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Kategori</a>
 
               <a href="/list-novel" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">List Novel</a>
 

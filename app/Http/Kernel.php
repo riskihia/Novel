@@ -3,6 +3,7 @@
 namespace App\Http;
 
 use App\Http\Middleware\AdminMiddleware;
+use App\Http\Middleware\EnsureGenreNovelUrl;
 use App\Http\Middleware\EnsureJudulNovelUrl;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
@@ -68,5 +69,6 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'admin' => AdminMiddleware::class,
         'validJudul' => EnsureJudulNovelUrl::class,
+        'validGenre' => EnsureGenreNovelUrl::class,
     ];
 }

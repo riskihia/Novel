@@ -2,12 +2,12 @@
 
 namespace App\Http\Middleware;
 
-use App\Models\Novel;
+use App\Models\Tag;
 use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class EnsureJudulNovelUrl
+class EnsureGenreNovelUrl
 {
     /**
      * Handle an incoming request.
@@ -16,15 +16,15 @@ class EnsureJudulNovelUrl
      */
     public function handle(Request $request, Closure $next): Response
     {
-        // Periksa apakah pengguna adalah admin
-        // Mendapatkan path URL saat ini
         $currentPath = str_replace("%20", " ", $request->path());
-        $novel = Novel::where("judul", $currentPath)->first();
-        // dd($currentPath);
-        if ($novel) {
+        $parts = explode('/', $currentPath);
+        $lastPart = end($parts);
+        $tag = Tag::where("nama", $lastPart)->first();
+        
+        if ($tag) {
             return $next($request);
         }
-
-        return redirect('/');
+        // Jika bukan admin, arahkan ke halaman lain (misalnya, beranda)
+        return redirect('/kategori');
     }
 }

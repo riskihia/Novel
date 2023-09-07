@@ -21,6 +21,7 @@ class NovelController extends Controller
         $this->tagService = $tagService;
     }
 
+    
     public function cariListNovel(Request $request)
     {
         $searchQuery = $request->input('cari-novel');

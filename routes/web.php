@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\HomepageController;
+use App\Http\Controllers\novels\GenreController;
 use App\Http\Controllers\Novels\NovelController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
@@ -56,6 +57,12 @@ Route::middleware('auth')->group(function () {
 require __DIR__.'/auth.php';
 
 Route::get('/list-novel', [NovelController::class, "listNovel"])->name('listNovel');
+
+// Kategori
+Route::get('/kategori', [GenreController::class, "index"])->name('kategoriNovel');
+Route::get('/kategori/{genre}', [GenreController::class, "cariGenre"])->middleware(['validGenre'])->name('kategori-genre-route');
+
+
 Route::post('/cari-list-novel', [NovelController::class, "cariListNovel"])->name('cari-list-novel');
 
 Route::get('/{judulNovel}', [NovelController::class, "viewNovel"])->middleware(['validJudul'])->name('view-novel');
