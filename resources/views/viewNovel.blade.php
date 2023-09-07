@@ -20,18 +20,27 @@
                 </div>
                 <div>
                     <h2 class="text-xl">Sinopsis</h1>
-                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cupiditate corporis ut sit consequuntur ex quia repellendus perferendis sunt! Porro, reiciendis!
-                        <br><br>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus unde incidunt officiis, corrupti possimus, neque inventore magnam rerum sequi, iure tempore magni laudantium suscipit veniam! Numquam blanditiis facilis consequatur eum mollitia, quas nostrum ullam illum sint cupiditate fuga sunt dolore accusamus quis esse corrupti sequi iste laudantium consequuntur hic autem?
-                    </p>
+                    <p>{{$novel->sinopsis}}</p>
                 </div>
                 <div>
                     <h2 class="text-xl">Detail</h2>
                     <p class="my-2"><span class="bg-violet-500 px-2 py-1 rounded-lg mx-2">Judul</span> : {{$novel->judul}}</p>
-                    <p class="my-2"><span class="bg-violet-500 px-2 py-1 rounded-lg mx-2">Status</span> : {{$novel->judul}}</p>
-                    <p class="my-2"><span class="bg-violet-500 px-2 py-1 rounded-lg mx-2">Link-terjemahan</span> : {{$novel->judul}}</p>
-                    <p class="my-2"><span class="bg-violet-500 px-2 py-1 rounded-lg mx-2">Author</span> : {{$novel->judul}}</p>
-                    <p class="my-2"><span class="bg-violet-500 px-2 py-1 rounded-lg mx-2">Genre</span> : Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores ipsam officiis illo dolore accusantium voluptatem incidunt obcaecati aliquam ex. Nulla blanditiis minus, tempora facilis rem ut nostrum molestiae cupiditate optio?</p>
+
+                    <p class="my-2"><span class="bg-violet-500 px-2 py-1 rounded-lg mx-2">Status</span> : {{$novel->status}}</p>
+
+                    <p class="my-2"><span class="bg-violet-500 px-2 py-1 rounded-lg mx-2">Link-terjemahan</span> : {{$novel->link}}</p>
+
+                    <p class="my-2"><span class="bg-violet-500 px-2 py-1 rounded-lg mx-2">Author</span> : {{$novel->author_name}}</p>
+
+                    <p class="my-2">
+                        <span class="bg-violet-500 px-2 py-1 rounded-lg mx-2">Genre</span>
+                        @foreach ($novel->tags as $tag)
+                            {{ $tag->nama }}{{-- Menampilkan nama tag --}}
+                            @if (!$loop->last)
+                                , {{-- Tambahkan koma jika bukan tag terakhir --}}
+                            @endif
+                        @endforeach
+                    </p>
                 </div>
             </div>
         </div>

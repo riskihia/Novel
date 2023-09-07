@@ -22,7 +22,7 @@ class NovelServiceImpl implements NovelService{
         return Novel::findOrFail($id);
     }
 
-    public function addNovel(string $avatar, string $judul, string $link, array $tags){
+    public function addNovel(string $avatar, string $judul, string $link,string $sinopsis, string $author_name, string $status, array $tags){
         
         // dd($tagsString);
 
@@ -30,6 +30,9 @@ class NovelServiceImpl implements NovelService{
             'avatar' => $avatar,
             'judul' => $judul,
             'link' => $link,
+            'sinopsis' => $sinopsis,
+            'status' => $status,
+            'author_name' => $author_name,
         ]);
         $novel = Novel::where("judul", $judul)->first();
         

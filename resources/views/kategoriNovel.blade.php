@@ -49,6 +49,24 @@
                                 </div>
                                 
                             </div>
+                            <div x-data="{ expanded: false }">
+                                <button id="button-status" @click="expanded = ! expanded" class="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 my-3">Author <i class="fa-solid fa-angle-down"></i></button>
+                                <div id="isi-status" x-show="expanded" x-collapse class="hidden grid-cols-5 gap-2 md:gap-8">
+                                    <div class="bg-gray-300 text-center py-2 px4 text-sm">Action</div>
+                                    <div class="bg-gray-300 text-center py-2 px4 text-sm">Action</div>
+                                    <div class="bg-gray-300 text-center py-2 px4 text-sm">Action</div>
+                                    <div class="bg-gray-300 text-center py-2 px4 text-sm">Action</div>
+                                    <div class="bg-gray-300 text-center py-2 px4 text-sm">Action</div>
+                                    <div class="bg-gray-300 text-center py-2 px4 text-sm">Action</div>
+                                    <div class="bg-gray-300 text-center py-2 px4 text-sm">Action</div>
+                                    <div class="bg-gray-300 text-center py-2 px4 text-sm">Action</div>
+                                    <div class="bg-gray-300 text-center py-2 px4 text-sm">Action</div>
+                                    <div class="bg-gray-300 text-center py-2 px4 text-sm">Action</div>
+                                    <div class="bg-gray-300 text-center py-2 px4 text-sm">Action</div>
+                                    <div class="bg-gray-300 text-center py-2 px4 text-sm">Action</div>
+                                </div>
+                                
+                            </div>
                         </div>
                     </div>
                 </div>

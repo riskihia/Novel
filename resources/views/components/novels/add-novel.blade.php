@@ -26,6 +26,8 @@
                                     <span class="text-red-500">{{$message}} error </span>
                               @enderror
                             </div>
+
+                            {{-- Judul --}}
                             <div>
                               <label for="judul" class="block text-sm font-medium leading-6 text-gray-900">Judul novel</label>
                               <div class="mt-2">
@@ -35,6 +37,18 @@
                                     <span class="text-red-500">{{$message}} error </span>
                               @enderror
                             </div>
+
+                            {{-- Sinopsis --}}
+                            <div class="mt-4">
+                              <label for="sinopsis" class="block text-sm font-medium leading-6 text-gray-900">Sinopsis</label>
+                              <div class="mt-2">
+                                <textarea id="sinopsis" name="sinopsis" required maxlength="500" class="block w-full rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">{{ old("sinopsis") }}</textarea>
+                              </div>
+                              @error('sinopsis')
+                                <span class="text-red-500">{{ $message }} error</span>
+                              @enderror
+                            </div>
+
                       
                             <div>
                               <label for="link-novel" class="block text-sm font-medium leading-6 text-gray-900">Link novel</label>
@@ -45,8 +59,34 @@
                                     <span class="text-red-500">{{$message}} error </span>
                               @enderror
                             </div>
+                            
+                            {{-- Status --}}
+                            <div class="mt-2">
+                              <label for="status" class="block text-sm font-medium leading-6 text-gray-900">Status</label>
+                              <select id="status" name="status" required class="block w-full rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                                <option value="ongoing" @if(old('status') == 'ongoing') selected @endif>Ongoing</option>
+                                <option value="completed" @if(old('status') == 'completed') selected @endif>Completed</option>
+                                <option value="hiatus" @if(old('status') == 'hiatus') selected @endif>Hiatus</option>
+                              </select>
+                              @error('status')
+                                    <span class="text-red-500">{{$message}} error </span>
+                              @enderror
+                            </div>
+
+                            {{-- Author --}}
+                            <div>
+                              <label for="author-name" class="block text-sm font-medium leading-6 text-gray-900">Author name</label>
+                              <div class="mt-2">
+                                <input id="author-name" name="author" type="author-name" value="{{old("author")}}"  required class="block w-full rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                              </div>
+                              @error('author')
+                                    <span class="text-red-500">{{$message}} error </span>
+                              @enderror
+                            </div>
 
                             <div>
+                              {{-- Label untuk tags --}}
+                              <label class="block text-sm font-medium leading-6 text-gray-900">Genre Novel</label>
                               @error('tags')
                                     <span class="text-red-500">{{$message}} </span>
                               @enderror

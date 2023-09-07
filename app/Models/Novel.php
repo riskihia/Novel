@@ -23,5 +23,8 @@ class Novel extends Model
         'judul',
         'avatar',
         'link',
+        'sinopsis',
+        'status',
+        'author_name',
     ];
 }

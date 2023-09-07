@@ -21,6 +21,9 @@ var isiGenre = document.getElementById("isi-genre");
 var buttonAuthor = document.getElementById("button-author");
 var isiAuthor = document.getElementById("isi-author");
 
+var buttonStatus = document.getElementById("button-status");
+var isiStatus = document.getElementById("isi-status");
+
 if (buttonAuthor && buttonGenre) {
     buttonAuthor.addEventListener("click", () => {
         isiAuthor.classList.remove("hidden");
@@ -29,5 +32,9 @@ if (buttonAuthor && buttonGenre) {
     buttonGenre.addEventListener("click", () => {
         isiGenre.classList.remove("hidden");
         isiGenre.classList.add("grid");
+    });
+    buttonStatus.addEventListener("click", () => {
+        isiStatus.classList.remove("hidden");
+        isiStatus.classList.add("grid");
     });
 }

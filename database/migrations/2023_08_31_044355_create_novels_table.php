@@ -16,6 +16,9 @@ return new class extends Migration
             $table->string('avatar')->nullable("false");
             $table->string('judul')->require()->unique();
             $table->string('link')->require();
+            $table->text('sinopsis')->required()->nullable(false);
+            $table->enum('status', ['completed', 'hiatus', 'ongoing'])->default('ongoing');
+            $table->string('author_name')->nullable(false);
             $table->softDeletes();
             $table->timestamps();
         });

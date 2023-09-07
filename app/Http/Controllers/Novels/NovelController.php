@@ -98,22 +98,30 @@ class NovelController extends Controller
             'judul' => 'required|string|max:200',
             'link' => 'required',
             'avatar' => 'image|mimes:jpeg,png|max:1000',
+            'sinopsis' => 'required|string|max:500', // Validasi untuk sinopsis
+            'status' => 'required|in:completed,hiatus,ongoing', // Validasi untuk status
+            'author' => 'required|string',
             "tags" => 'required|array'
         ]);
         
+        // dd($request->input());
 
         if ($validator->fails()) {
+            dd($validator);
             return redirect()->back()->withErrors($validator)->withInput();
         }
-
         $judul = $request->input("judul");
         $link = $request->input("link");
         $tags = $request->input("tags");
+        $sinopsis = $request->input("sinopsis"); // Ambil sinopsis dari request
+        $status = $request->input("status"); // Ambil status dari request
+        $authorName = $request->input("author"); // Ambil author_name dari request
+
         // dd($tags);
 
         $pathBaru = $this->novelService->uploadAvatarAndGetPath($request);
 
-        $this->novelService->addNovel($pathBaru, $judul, $link, $tags);
+        $this->novelService->addNovel($pathBaru, $judul, $link,$sinopsis,  $authorName,$status, $tags);
 
         return redirect()->route("novels");
     }
