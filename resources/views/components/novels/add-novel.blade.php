@@ -50,6 +50,7 @@
                             </div>
 
                       
+                            {{-- Link novel --}}
                             <div>
                               <label for="link-novel" class="block text-sm font-medium leading-6 text-gray-900">Link novel</label>
                               <div class="mt-2">
@@ -86,24 +87,24 @@
 
                             <div>
                               {{-- Label untuk tags --}}
-                              <label class="block text-sm font-medium leading-6 text-gray-900">Genre Novel</label>
+                              <label class="block text-sm font-medium leading-6 text-gray-900" >Genre Novel</label>
                               @error('tags')
                                     <span class="text-red-500">{{$message}} </span>
                               @enderror
-                              @forelse ($tags as $tag)
-                                <div class="flex items-center">
-                                  {{-- Tambah attribut checked pada tag input --}}
-                                  <input name="tags[]" id="{{$tag->nama}}" type="checkbox" value="{{$tag->nama}}" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
-                                  <label for="{{$tag->nama}}" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">{{$tag->nama}}</label>
-                                </div>
-                              @empty    
-                                
-                                <div class="flex items-center mb-4">
-                                    <input id="default-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                    <label for="default-checkbox" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Default checkbox</label>
-                                </div>
-                              @endforelse
-                              
+                              <div class="grid grid-cols-2">
+                                @forelse ($tags as $tag)
+                                  <div class="flex items-center">
+                                    {{-- Tambah attribut checked pada tag input --}}
+                                    <input name="tags[]" id="{{$tag->nama}}" type="checkbox" value="{{$tag->nama}}" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                                    <label for="{{$tag->nama}}" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">{{$tag->nama}}</label>
+                                  </div>
+                                @empty    
+                                  <div class="flex items-center mb-4">
+                                      <input id="default-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                      <label for="default-checkbox" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Default checkbox</label>
+                                  </div>
+                                @endforelse
+                              </div>
                             </div>
                       
                             <div>

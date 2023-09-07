@@ -22,7 +22,8 @@ class GenreController extends Controller
     public function index(Request $request)
     {
         $tags = $this->tagService->getAllTags();
-        return response()->view("kategoriNovel",compact("tags"));
+        $authors = $this->novelService->getAllNovelAuthor();
+        return response()->view("kategoriNovel",compact("tags", "authors"));
     }
 
     public function cariGenre(Request $request, string $genre){

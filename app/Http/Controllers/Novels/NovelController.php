@@ -55,11 +55,14 @@ class NovelController extends Controller
 
         $novels = Novel::where('judul', 'like', "%$searchQuery%")->paginate(10);
 
-
-        return response()->view("components.novels.show-novel",[
+        return redirect()->route('novels', [
             "novels" => $novels,
-            "searchQuery" => $searchQuery
+            'cari-novel' => $searchQuery
         ]);
+        // return response()->view("components.novels.show-novel",[
+        //     "novels" => $novels,
+        //     "searchQuery" => $searchQuery
+        // ]);
         // return view('show-novel', compact('novels', 'searchQuery'));
     }
 
@@ -67,10 +70,18 @@ class NovelController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         //
-        $novels = $this->novelService->getAllNovel();
+        $searchQuery = $request->input('cari-novel');
+
+        if ($searchQuery) {
+            // Lakukan pencarian jika ada parameter query
+            $novels = Novel::where('judul', 'like', "%$searchQuery%")->paginate(10);
+        } else {
+            // Jika tidak ada parameter query, ambil semua novel
+            $novels = $this->novelService->getAllNovel();
+        }
         return response()->view("components.novels.show-novel",[
             "novels" => $novels 
         ]);
@@ -157,12 +168,18 @@ class NovelController extends Controller
             'judul' => 'required|string|max:200',
             'link' => 'required',
             'avatar' => 'image|mimes:jpeg,png|max:1000', // Maksimal 2MB
+            'sinopsis' => 'required|string|max:500', // Validasi untuk sinopsis
+            'status' => 'required|in:completed,hiatus,ongoing', // Validasi untuk status
+            'author' => 'required|string',
             'tags' => 'required|array',
         ]);
     
         $novel = $this->novelService->getNovelById($id);
         $novel->judul = $request->judul;
         $novel->link = $request->link;
+        $novel->sinopsis = $request->sinopsis;
+        $novel->status = $request->status;
+        $novel->author_name= $request->author;
     
         // Cek apakah ada gambar avatar yang diunggah
         if ($request->hasFile('avatar')) {

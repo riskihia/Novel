@@ -16,6 +16,9 @@ class NovelServiceImpl implements NovelService{
     public function getAllNovel(){
         return Novel::orderBy('created_at', 'desc')->paginate(10);
     }
+    public function getAllNovelAuthor(){
+        return Novel::pluck('author_name');
+    }
 
     public function getNovelById(string $id)
     {

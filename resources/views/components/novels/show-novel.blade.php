@@ -25,7 +25,7 @@
               </form>
             </div> --}}
             <div class="relative">
-              <form action="{{route("cari-novel")}}" method="POST">
+              <form action="{{route("search-novel")}}" method="POST">
                 @csrf
                 <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
                 <div class="relative">
@@ -58,7 +58,7 @@
                               </a>
 
                               <div class="min-w-0 flex-auto">
-                                <a href="{{$novel->link}}">
+                                <a href="/{{$novel->judul}}">
                                   <p class="text-sm font-semibold leading-6 text-gray-900">{{$novel->judul}}</p>
                                 </a>
                                 <a href="{{$novel->link}}" class="mt-1 truncate text-xs leading-5 text-gray-500">#tagss #tag</a>
