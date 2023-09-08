@@ -15,8 +15,20 @@
             <div class="bg-white shadow-md rounded-lg max-w-7xl mx-auto px-6 lg:px-8 lg:w-1/2">
                 
                 <h1 class="text-2xl">{{$novel->judul}}</h1>
-                <div>
+                <div class="text-center">
                     <img class="h-60 w-40 bg-gray-50 mx-auto rounded-lg shadow-lg" src="{{$novel->avatar}}" alt="">
+
+                    @if ($novel->users->contains(Auth::user()))
+                        
+                        <form action="{{route("addLibraryNovel")}}" method="POST">
+                            @csrf
+                            <input type="hidden" name="judulNovel" value="{{$novel->judul}}">
+                            <button class="bg-violet-500 my-2 py-1 px-3 text-white text-lg shadow-lg rounded-md">add to library</button>
+                        </form>
+                    @else
+                    <button class="bg-violet-500 my-2 py-1 px-3 text-white text-lg shadow-lg rounded-md">Delete to library</button>
+                    @endif
+
                 </div>
                 <div>
                     <h2 class="text-xl">Sinopsis</h1>

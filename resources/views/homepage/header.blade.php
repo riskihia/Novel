@@ -17,7 +17,7 @@
       </div>
       <div class="hidden lg:flex lg:gap-x-12">
         <a href="/" class="text-sm font-semibold leading-6 text-gray-900">Home</a>
-        <a href="#FEATURES" class="text-sm font-semibold leading-6 text-gray-900">Library</a>
+        <a href="/library" class="text-sm font-semibold leading-6 text-gray-900">Library</a>
         <a href="/kategori" class="text-sm font-semibold leading-6 text-gray-900">Kategori</a>
         <a href="/list-novel" class="text-sm font-semibold leading-6 text-gray-900">List Novel</a>
         <a href="#REQUEST" class="text-sm font-semibold leading-6 text-gray-900">Request</a>
@@ -74,7 +74,7 @@
             <div class="space-y-2 py-6">
               <a href="/" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Home</a>
 
-              <a href="#FEATURES" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Library</a>
+              <a href="/library" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Library</a>
               
               <a href="/kategori" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Kategori</a>
 

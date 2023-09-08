@@ -18,6 +18,11 @@ class Novel extends Model
     {
         return $this->belongsToMany(Tag::class);
     }
+    
+    public function users(): BelongsToMany
+    {
+        return $this->belongsToMany(User::class);
+    }
 
     protected $fillable = [
         'judul',
