@@ -17,16 +17,18 @@
                 <h1 class="text-2xl">{{$novel->judul}}</h1>
                 <div class="text-center">
                     <img class="h-60 w-40 bg-gray-50 mx-auto rounded-lg shadow-lg" src="{{$novel->avatar}}" alt="">
-
                     @if ($novel->users->contains(Auth::user()))
-                        
+                        <form action="{{route("deleteLibraryNovel")}}" method="POST">
+                            @csrf
+                            <input type="hidden" name="judulNovel" value="{{$novel->judul}}">
+                            <button class="bg-red-500 my-2 py-1 px-3 text-white text-lg shadow-lg rounded-md">delete from library</button>
+                        </form>
+                    @else
                         <form action="{{route("addLibraryNovel")}}" method="POST">
                             @csrf
                             <input type="hidden" name="judulNovel" value="{{$novel->judul}}">
-                            <button class="bg-violet-500 my-2 py-1 px-3 text-white text-lg shadow-lg rounded-md">add to library</button>
+                            <button class="bg-green-500 my-2 py-1 px-3 text-white text-lg shadow-lg rounded-md">add to library</button>
                         </form>
-                    @else
-                    <button class="bg-violet-500 my-2 py-1 px-3 text-white text-lg shadow-lg rounded-md">Delete to library</button>
                     @endif
 
                 </div>

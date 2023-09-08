@@ -26,7 +26,7 @@
         @if (Route::has('login'))
             <div class="text-right z-10">
                 @auth
-                <div class="flex">
+                <div class="flex"> 
                     <a href="{{ url('/dashboard') }}" class="font-semibold text-gray-600 hover:text-gray-900">{{ Auth::user()->name }}</a>
                     <div class="mx-2">|</div>
                     <form class="cursor-pointer" method="POST" action="{{ route('logout') }}">

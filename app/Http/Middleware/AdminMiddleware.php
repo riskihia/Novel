@@ -22,6 +22,6 @@ class AdminMiddleware
         }
 
         // Jika bukan admin, arahkan ke halaman lain (misalnya, beranda)
-        return redirect('/');
+        return redirect()->route("profile.edit");
     }
 }

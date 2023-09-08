@@ -5,6 +5,7 @@ use App\Http\Controllers\novels\GenreController;
 use App\Http\Controllers\Novels\LibraryController;
 use App\Http\Controllers\Novels\NovelController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\TagController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -46,7 +47,14 @@ Route::resource("novels", NovelController::class)->middleware(['auth', 'verified
     "update" => "novels-update",
 ]);
 
+// Member route
 Route::get('/member', [UserController::class, "index"])->middleware(['auth', 'verified','admin'])->name('member');
+
+// Tag Route
+Route::get('/tags', [TagController::class, "index"])->middleware(['auth', 'verified','admin'])->name('tag');
+Route::post('/tags', [TagController::class, "store"])->middleware(['auth', 'verified','admin'])->name('tags-store');
+Route::get('/tags/create', [TagController::class, "create"])->middleware(['auth', 'verified','admin'])->name('tags-create');
+Route::delete('/tags/{tag}', [TagController::class, "destroy"])->middleware(['auth', 'verified','admin'])->name('tags-delete');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -68,6 +76,7 @@ Route::get('/status/{status}', [GenreController::class, "cariStatus"])->middlewa
 // Library
 Route::get("/library", [LibraryController::class, 'index'])->name('libraryNovel');
 Route::post("/add-library", [LibraryController::class, 'addToLibrary'])->name('addLibraryNovel');
+Route::post("/delete-library", [LibraryController::class, 'deleteFromLibrary'])->name('deleteLibraryNovel');
 
 
 Route::post('/cari-list-novel', [NovelController::class, "cariListNovel"])->name('cari-list-novel');

@@ -28,11 +28,22 @@
                             <x-dropdown-link>Delete request</x-dropdown-link>
                         </x-slot>
                     </x-nav-link>
+                    
+                    {{-- Member --}}
                     <x-nav-link :href="route('member')" :active="request()->routeIs('member')">
                         {{ __('Member') }}
                         <x-slot name="content">
                             <x-dropdown-link>Add member</x-dropdown-link>
                             <x-dropdown-link>Delete member member</x-dropdown-link>
+                        </x-slot>
+                    </x-nav-link>
+                    
+                    {{-- Tag --}}
+                    <x-nav-link :href="route('tag')" :active="request()->routeIs('tag')">
+                        {{ __('Tags') }}
+                        <x-slot name="content">
+                            <x-dropdown-link :href="route('tag')">Show tag</x-dropdown-link>
+                            <x-dropdown-link :href="route('tags-create')">Add tag</x-dropdown-link>
                         </x-slot>
                     </x-nav-link>
 
@@ -100,8 +111,8 @@
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
                 <x-slot name="content">
-                    <x-dropdown-link>Add novel</x-dropdown-link>
-                    <x-dropdown-link>Delete novel</x-dropdown-link>
+                    <x-dropdown-link>Comming soon</x-dropdown-link>
+                    <x-dropdown-link>Comming soon</x-dropdown-link>
                 </x-slot>
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('request')" :active="request()->routeIs('request')">
@@ -116,6 +127,15 @@
                 <x-slot name="content">
                     <x-dropdown-link>Add member</x-dropdown-link>
                     <x-dropdown-link>Delete member</x-dropdown-link>
+                </x-slot>
+            </x-responsive-nav-link>
+            
+            {{-- Tag --}}
+            <x-responsive-nav-link :href="route('tag')" :active="request()->routeIs('tag')">
+                {{ __('Tags') }}
+                <x-slot name="content">
+                    <x-dropdown-link :href="route('tag')">Show tag</x-dropdown-link>
+                    <x-dropdown-link :href="route('tags-create')">Add tag</x-dropdown-link>
                 </x-slot>
             </x-responsive-nav-link>
 

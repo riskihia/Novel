@@ -92,7 +92,6 @@ class NovelController extends Controller
      */
     public function create()
     {
-        //
         
         $tags = $this->tagService->getAllTags();
         return response()->view("components.novels.add-novel", compact("tags"));

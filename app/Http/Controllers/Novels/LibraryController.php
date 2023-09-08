@@ -34,8 +34,21 @@ class LibraryController extends Controller
         $user = User::where("name", $userLogin->name)->first();
         $novel = Novel::where("judul", $judulNovel)->first();
 
-
+        // dd($user->novel());
         $user->novels()->syncWithoutDetaching($novel);
+
+        return redirect()->back();
+    }
+    public function deleteFromLibrary(Request $request)
+    {
+        $userLogin = Auth::user();
+        $judulNovel = $request->input("judulNovel");
+
+        $user = User::where("name", $userLogin->name)->first();
+        $novel = Novel::where("judul", $judulNovel)->first();
+
+        // dd($user->novel());
+        $user->novels()->detach($novel);
 
         return redirect()->back();
     }

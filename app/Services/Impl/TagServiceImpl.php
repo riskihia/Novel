@@ -10,6 +10,15 @@ class TagServiceImpl implements TagService{
     {
         return Tag::orderBy('nama', 'asc')->get();
     }
+    
+    public function addTags(string $nama)
+    {
+        Tag::create([
+            'nama' => $nama,
+        ]);
+
+        return "berhasil add tags";
+    }
 
     public function getIdTags(array $tags)
     {
@@ -22,5 +31,15 @@ class TagServiceImpl implements TagService{
         }
 
         return $tagIds;
+    }
+
+    public function deleteTag(string $id)
+    {
+        $tag = Tag::findOrFail($id);
+
+        if (!$tag) {
+            return redirect()->route('tag')->with('error', 'Tag tidak ditemukan');
+        }
+        $tag->delete();
     }
 }
