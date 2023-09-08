@@ -24,7 +24,7 @@
                                 <button id="button-genre" @click="expanded = ! expanded" class="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 my-3">Genre <i class="fa-solid fa-angle-down"></i></button>
                                 <div id="isi-genre" x-show="expanded" x-collapse class="hidden grid-cols-5 gap-2 md:gap-8">
                                     @forelse ($tags as $tag)
-                                    <a href="{{url("/kategori/$tag->nama")}}" class="bg-gray-300 text-center py-2 px4 text-sm">{{$tag->nama}}</a>
+                                    <a href="{{url("/genre/$tag->nama")}}" class="bg-gray-300 text-center py-2 px4 text-sm">{{$tag->nama}}</a>
                                     @empty
                                         <span>None off tag</span>
                                     @endforelse
@@ -38,7 +38,7 @@
                                 <button id="button-author" @click="expanded = ! expanded" class="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 my-3">Author <i class="fa-solid fa-angle-down"></i></button>
                                 <div id="isi-author" x-show="expanded" x-collapse class="hidden grid-cols-5 gap-2 md:gap-8">
                                     @forelse ($authors as $author)
-                                    <a href="{{url("/kategori/$tag->nama")}}" class="bg-gray-300 text-center py-2 px4 text-sm">{{$author}}</a>
+                                    <a href="{{url("/author/$author")}}" class="bg-gray-300 text-center py-2 px4 text-sm">{{$author}}</a>
                                     @empty
                                         <span>None off tag</span>
                                     @endforelse
@@ -46,20 +46,13 @@
                                 
                             </div>
                             <div x-data="{ expanded: false }">
-                                <button id="button-status" @click="expanded = ! expanded" class="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 my-3">Author <i class="fa-solid fa-angle-down"></i></button>
+                                <button id="button-status" @click="expanded = ! expanded" class="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 my-3">Status <i class="fa-solid fa-angle-down"></i></button>
                                 <div id="isi-status" x-show="expanded" x-collapse class="hidden grid-cols-5 gap-2 md:gap-8">
-                                    <div class="bg-gray-300 text-center py-2 px4 text-sm">Action</div>
-                                    <div class="bg-gray-300 text-center py-2 px4 text-sm">Action</div>
-                                    <div class="bg-gray-300 text-center py-2 px4 text-sm">Action</div>
-                                    <div class="bg-gray-300 text-center py-2 px4 text-sm">Action</div>
-                                    <div class="bg-gray-300 text-center py-2 px4 text-sm">Action</div>
-                                    <div class="bg-gray-300 text-center py-2 px4 text-sm">Action</div>
-                                    <div class="bg-gray-300 text-center py-2 px4 text-sm">Action</div>
-                                    <div class="bg-gray-300 text-center py-2 px4 text-sm">Action</div>
-                                    <div class="bg-gray-300 text-center py-2 px4 text-sm">Action</div>
-                                    <div class="bg-gray-300 text-center py-2 px4 text-sm">Action</div>
-                                    <div class="bg-gray-300 text-center py-2 px4 text-sm">Action</div>
-                                    <div class="bg-gray-300 text-center py-2 px4 text-sm">Action</div>
+                                    @forelse ($status as $status_item)
+                                    <a href="{{url("/status/$status_item")}}" class="bg-gray-300 text-center py-2 px4 text-sm">{{$status_item}}</a>
+                                    @empty
+                                        <span>None off tag</span>
+                                    @endforelse
                                 </div>
                                 
                             </div>

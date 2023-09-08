@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 interface NovelService{
     public function getAllNovel();
     public function getAllNovelAuthor();
+    public function getAllNovelStatus();
     public function getNovelByJudul(string $judulNovel);
     public function deleteAvatarNovel(string $namaFile);
     public function getNovelById(string $id);

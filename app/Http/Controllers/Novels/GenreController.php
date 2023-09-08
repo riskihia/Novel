@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\novels;
 
 use App\Http\Controllers\Controller;
+use App\Models\Novel;
 use App\Models\Tag;
 use App\Services\NovelService;
 use App\Services\TagService;
@@ -23,7 +24,10 @@ class GenreController extends Controller
     {
         $tags = $this->tagService->getAllTags();
         $authors = $this->novelService->getAllNovelAuthor();
-        return response()->view("kategoriNovel",compact("tags", "authors"));
+        $status = $this->novelService->getAllNovelStatus();
+        // dd($status);
+
+        return response()->view("kategoriNovel",compact("tags", "authors", "status"));
     }
 
     public function cariGenre(Request $request, string $genre){
@@ -32,5 +36,15 @@ class GenreController extends Controller
         $novels = $tag->novels()->paginate(10); // atau paginate() jika ingin menggunakan paginasi
 
         return response()->view("genreView", compact("novels", "genre"));
+    }
+    public function cariAuthor(Request $request, string $author){
+        $novels = Novel::where("author_name", $author)->paginate(10);
+
+        return response()->view("authorView", compact("novels", "author"));
+    }
+    public function cariStatus(Request $request, string $status){
+        $novels = Novel::where("status", $status)->paginate(10);
+
+        return response()->view("statusView", compact("novels", "status"));
     }
 }

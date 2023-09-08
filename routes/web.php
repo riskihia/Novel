@@ -60,7 +60,9 @@ Route::get('/list-novel', [NovelController::class, "listNovel"])->name('listNove
 
 // Kategori
 Route::get('/kategori', [GenreController::class, "index"])->name('kategoriNovel');
-Route::get('/kategori/{genre}', [GenreController::class, "cariGenre"])->middleware(['validGenre'])->name('kategori-genre-route');
+Route::get('/genre/{genre}', [GenreController::class, "cariGenre"])->middleware(['validGenre'])->name('kategori-genre-route');
+Route::get('/author/{author}', [GenreController::class, "cariAuthor"])->middleware(['validAuthor'])->name('kategori-author-route');
+Route::get('/status/{status}', [GenreController::class, "cariStatus"])->middleware(['validStatus'])->name('kategori-status-route');
 
 
 Route::post('/cari-list-novel', [NovelController::class, "cariListNovel"])->name('cari-list-novel');

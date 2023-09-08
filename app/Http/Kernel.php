@@ -3,8 +3,10 @@
 namespace App\Http;
 
 use App\Http\Middleware\AdminMiddleware;
+use App\Http\Middleware\EnsureAuthorNovelUrl;
 use App\Http\Middleware\EnsureGenreNovelUrl;
 use App\Http\Middleware\EnsureJudulNovelUrl;
+use App\Http\Middleware\EnsureStatusNovelUrl;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -70,5 +72,7 @@ class Kernel extends HttpKernel
         'admin' => AdminMiddleware::class,
         'validJudul' => EnsureJudulNovelUrl::class,
         'validGenre' => EnsureGenreNovelUrl::class,
+        'validAuthor' => EnsureAuthorNovelUrl::class,
+        'validStatus' => EnsureStatusNovelUrl::class,
     ];
 }
