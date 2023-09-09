@@ -4,6 +4,7 @@ namespace App\Services\Impl;
 
 use App\Models\Tag;
 use App\Services\TagService;
+use Illuminate\Database\QueryException;
 
 class TagServiceImpl implements TagService{
     public function getAllTags()
@@ -35,11 +36,20 @@ class TagServiceImpl implements TagService{
 
     public function deleteTag(string $id)
     {
-        $tag = Tag::findOrFail($id);
-
-        if (!$tag) {
-            return redirect()->route('tag')->with('error', 'Tag tidak ditemukan');
+        try {
+            $tag = Tag::findOrFail($id);
+            $tag->delete();
+        } catch (QueryException $e) {
+            return redirect()->back()->with('error', 'Tidak dapat menghapus tag karena terdapat ketergantungan data.');
         }
-        $tag->delete();
+    
+        // Redirect ke halaman yang sesuai setelah berhasil menghapus tag
+        // return redirect()->route('tag')->with('success', 'Tag berhasil dihapus');
+        // $tag = Tag::findOrFail($id);
+
+        // if (!$tag) {
+        //     return redirect()->route('tag')->with('error', 'Tag tidak ditemukan');
+        // }
+        // $delete = $tag->delete();
     }
 }

@@ -12,7 +12,7 @@
         @include('homepage.header')
 
         <div class="bg-gray-100 min-h-screen mt-16 py-10 px-2">
-            <div class="bg-white shadow-md rounded-lg max-w-7xl mx-auto px-6 lg:px-8 lg:w-1/2">
+            <div class="bg-white shadow-md min-h-screen rounded-lg max-w-7xl mx-auto px-6 lg:px-8 lg:w-1/2">
                 
                 <h1 class="text-2xl">{{$novel->judul}}</h1>
                 <div class="text-center">

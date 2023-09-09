@@ -17,7 +17,7 @@ class AdminMiddleware
     public function handle(Request $request, Closure $next): Response
     {
         // Periksa apakah pengguna adalah admin
-        if ($request->session()->get('email') == 'admin@gmail.com') {
+        if ($request->session()->get('email') == 'admin@gmail.com' || $request->session()->get('email') == 'riski@gmail.com') {
             return $next($request);
         }
 

@@ -1,6 +1,7 @@
 <?php
 
 use App\Providers\NovelServiceProvider;
+use App\Providers\RequestServiceProvider;
 use App\Providers\TagServiceProvider;
 use App\Providers\UserServiceProvider;
 use Illuminate\Support\Facades\Facade;
@@ -174,6 +175,7 @@ return [
         UserServiceProvider::class,
         NovelServiceProvider::class,
         TagServiceProvider::class,
+        RequestServiceProvider::class
     ])->toArray(),
 
     /*

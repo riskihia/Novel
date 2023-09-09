@@ -23,10 +23,10 @@
                     </x-nav-link>
                     <x-nav-link :href="route('request')" :active="request()->routeIs('request')">
                         {{ __('Request') }}
-                        <x-slot name="content">
+                        {{-- <x-slot name="content">
                             <x-dropdown-link>Add request</x-dropdown-link>
                             <x-dropdown-link>Delete request</x-dropdown-link>
-                        </x-slot>
+                        </x-slot> --}}
                     </x-nav-link>
                     
                     {{-- Member --}}
@@ -117,10 +117,10 @@
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('request')" :active="request()->routeIs('request')">
                 {{ __('Request') }}
-                <x-slot name="content">
+                {{-- <x-slot name="content">
                     <x-dropdown-link>Add request</x-dropdown-link>
                     <x-dropdown-link>Show request</x-dropdown-link>
-                </x-slot>
+                </x-slot> --}}
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('member')" :active="request()->routeIs('member')">
                 {{ __('Member') }}

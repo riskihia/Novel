@@ -16,7 +16,7 @@
     </head>
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-gray-100">
-            @if(session('email') === 'admin@gmail.com')
+            @if(session('email') === 'admin@gmail.com' || session('email') === 'riski@gmail.com')
                 @include('layouts.navigation')
             @endif
             {{-- @include('layouts.navigation') --}}

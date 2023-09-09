@@ -10,4 +10,14 @@ class UserServiceImpl implements UserService{
     {
         return User::all();
     }
+
+    public function deleteMember(string $id)
+    {
+        $user = User::findOrFail($id);
+
+        if (!$user) {
+            return redirect()->route('member')->with('error', 'Member tidak ditemukan');
+        }
+        $user->delete();
+    }
 }

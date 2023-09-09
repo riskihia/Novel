@@ -5,6 +5,7 @@ use App\Http\Controllers\Novels\GenreController;
 use App\Http\Controllers\Novels\LibraryController;
 use App\Http\Controllers\Novels\NovelController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RequestController;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -30,9 +31,7 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified', 'admin'])->name('dashboard');
 
-Route::get('/request', function () {
-    return view('request');
-})->middleware(['auth', 'verified'])->name('request');
+
 
 // route novel
 Route::post('/search-novel', [NovelController::class, "search"])->middleware(['auth', 'verified', 'admin'])->name('search-novel');
@@ -47,8 +46,6 @@ Route::resource("novels", NovelController::class)->middleware(['auth', 'verified
     "update" => "novels-update",
 ]);
 
-// Member route
-Route::get('/member', [UserController::class, "index"])->middleware(['auth', 'verified','admin'])->name('member');
 
 // Tag Route
 Route::get('/tags', [TagController::class, "index"])->middleware(['auth', 'verified','admin'])->name('tag');
@@ -72,6 +69,16 @@ Route::get('/kategori', [GenreController::class, "index"])->name('kategoriNovel'
 Route::get('/genre/{genre}', [GenreController::class, "cariGenre"])->middleware(['validGenre'])->name('kategori-genre-route');
 Route::get('/author/{author}', [GenreController::class, "cariAuthor"])->middleware(['validAuthor'])->name('kategori-author-route');
 Route::get('/status/{status}', [GenreController::class, "cariStatus"])->middleware(['validStatus'])->name('kategori-status-route');
+
+// Request
+Route::get('/requests', [RequestController::class, "index"])->middleware(['auth', 'verified'])->name('request');
+Route::post('/request', [RequestController::class, "store"])->middleware(['auth', 'verified'])->name('requests-store');
+Route::delete('/requests/{request}', [RequestController::class, "destroy"])->middleware(['auth', 'verified','admin'])->name('requests-delete');
+
+// Member route
+Route::get('/members', [UserController::class, "index"])->middleware(['auth', 'verified','admin'])->name('member');
+Route::delete('/members/{member}', [UserController::class, "destroy"])->middleware(['auth', 'verified','admin'])->name('members-delete');
+
 
 // Library
 Route::get("/library", [LibraryController::class, 'index'])->name('libraryNovel');

@@ -117,7 +117,7 @@ class NovelController extends Controller
         // dd($request->input());
 
         if ($validator->fails()) {
-            dd($validator);
+            // dd($validator);
             return redirect()->back()->withErrors($validator)->withInput();
         }
         $judul = $request->input("judul");
