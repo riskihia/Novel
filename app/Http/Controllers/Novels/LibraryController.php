@@ -21,9 +21,12 @@ class LibraryController extends Controller
     public function index()
     {
         $user = User::where("id", Auth::id())->first();
-        $novels = $user->novels()->paginate(10);
+        if($user){
+            $novels = $user->novels()->paginate(10);
+            return response()->view("libraryNovel",compact("novels"));
+        }
+        return response()->view("libraryNovel");
 
-        return response()->view("libraryNovel",compact("novels"));
     }
 
     public function addToLibrary(Request $request)

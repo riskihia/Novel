@@ -57,7 +57,7 @@
     <div id="navMobile" class="hidden">
       <!-- Background backdrop, show/hide based on slide-over state. -->
       <div id="sidebar-backdrop" class="fixed inset-0 z-50"></div>
-      <div class="fixed inset-y-0 left-0 z-50 w-1/2 overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
+      <div class="fixed inset-y-0 left-0 z-50 w-3/4 overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
         <div class="flex items-center justify-between">
           <a href="#" class="-m-1.5 p-1.5">
             Logo

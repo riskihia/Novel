@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\novels;
 
+
 use App\Http\Controllers\Controller;
 use App\Models\Novel;
 use App\Models\Tag;

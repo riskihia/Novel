@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\HomepageController;
-use App\Http\Controllers\novels\GenreController;
+use App\Http\Controllers\Novels\GenreController;
 use App\Http\Controllers\Novels\LibraryController;
 use App\Http\Controllers\Novels\NovelController;
 use App\Http\Controllers\ProfileController;

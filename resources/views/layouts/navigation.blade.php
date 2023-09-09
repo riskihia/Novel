@@ -14,12 +14,12 @@
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
-                        <x-slot name="content">
+                        {{-- <x-slot name="content">
                             <x-dropdown-link>Add novel</x-dropdown-link>
                             <x-dropdown-link>Show novel</x-dropdown-link>
                             <x-dropdown-link>Edit novel</x-dropdown-link>
                             <x-dropdown-link>Delete novel</x-dropdown-link>
-                        </x-slot>
+                        </x-slot> --}}
                     </x-nav-link>
                     <x-nav-link :href="route('request')" :active="request()->routeIs('request')">
                         {{ __('Request') }}
@@ -32,10 +32,10 @@
                     {{-- Member --}}
                     <x-nav-link :href="route('member')" :active="request()->routeIs('member')">
                         {{ __('Member') }}
-                        <x-slot name="content">
+                        {{-- <x-slot name="content">
                             <x-dropdown-link>Add member</x-dropdown-link>
                             <x-dropdown-link>Delete member member</x-dropdown-link>
-                        </x-slot>
+                        </x-slot> --}}
                     </x-nav-link>
                     
                     {{-- Tag --}}
@@ -110,10 +110,10 @@
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
-                <x-slot name="content">
+                {{-- <x-slot name="content">
                     <x-dropdown-link>Comming soon</x-dropdown-link>
                     <x-dropdown-link>Comming soon</x-dropdown-link>
-                </x-slot>
+                </x-slot> --}}
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('request')" :active="request()->routeIs('request')">
                 {{ __('Request') }}
@@ -124,10 +124,10 @@
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('member')" :active="request()->routeIs('member')">
                 {{ __('Member') }}
-                <x-slot name="content">
+                {{-- <x-slot name="content">
                     <x-dropdown-link>Add member</x-dropdown-link>
                     <x-dropdown-link>Delete member</x-dropdown-link>
-                </x-slot>
+                </x-slot> --}}
             </x-responsive-nav-link>
             
             {{-- Tag --}}
