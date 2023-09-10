@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\DonationController;
 use App\Http\Controllers\HomepageController;
 use App\Http\Controllers\Novels\GenreController;
 use App\Http\Controllers\Novels\LibraryController;
@@ -25,6 +26,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomepageController::class, "index"])->name("homepage");
 Route::post('/homepage-search-novel', [HomepageController::class, "search"])->name("input-search");
 Route::post('/cari-novel', [HomepageController::class, "cari"])->name("cari-novel");
+
+// Donation midtrans
+Route::get("/donation", [DonationController::class, "create"])->name("donation.create");
+Route::get("/donation-home", [DonationController::class, "index"])->name("donation.index");
+
 
 // GOOGLE LOGIN
 Route::get('/login/google', [LoginController::class, "redirectToGoogle"]);
