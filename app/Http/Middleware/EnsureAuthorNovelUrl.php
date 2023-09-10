@@ -19,9 +19,12 @@ class EnsureAuthorNovelUrl
         $currentPath = str_replace("%20", " ", $request->path());
         $parts = explode('/', $currentPath);
         $lastPart = end($parts);
+        $lastPart = urldecode($lastPart);
         $novel_author = Novel::where("author_name", $lastPart)->first();
+        // dd($lastPart);
         
         if ($novel_author) {
+            // dd($novel_author);
             return $next($request);
         }
         return redirect('/kategori');
