@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\novels;
+namespace App\Http\Controllers\Novels;
 
 
 use App\Http\Controllers\Controller;

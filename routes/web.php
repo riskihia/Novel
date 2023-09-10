@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\HomepageController;
 use App\Http\Controllers\Novels\GenreController;
 use App\Http\Controllers\Novels\LibraryController;
@@ -24,6 +25,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomepageController::class, "index"])->name("homepage");
 Route::post('/homepage-search-novel', [HomepageController::class, "search"])->name("input-search");
 Route::post('/cari-novel', [HomepageController::class, "cari"])->name("cari-novel");
+
+// GOOGLE LOGIN
+Route::get('/login/google', [LoginController::class, "redirectToGoogle"]);
+Route::get('/login/google/callback', [LoginController::class, "handleGoogleCallback"]);
 
 
 
