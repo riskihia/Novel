@@ -24,7 +24,7 @@ class DonationController extends Controller
     public function index()
     {
         $donations = Donation::orderBy('id', 'desc')->paginate(8);
-        return view('welcome', compact('donations'));
+        return view('showDonations', compact('donations'));
     }
 
     public function create()
@@ -61,7 +61,8 @@ class DonationController extends Controller
                         'quantity' => 1,
                         'name'     => ucwords(str_replace('_', ' ', $donation->donation_type))
                     ]
-                ]
+                ],
+                "enabled_payments"=> ["other_qris"]
             ];
             $snapToken = Snap::getSnapToken($payload);
             $donation->snap_token = $snapToken;
