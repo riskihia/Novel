@@ -8,6 +8,7 @@ use App\Http\Controllers\Novels\LibraryController;
 use App\Http\Controllers\Novels\NovelController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RequestController;
+use App\Http\Controllers\Swals\SwalController;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -23,6 +24,27 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Latihan swal
+Route::view('/swal', 'swal.swal');
+Route::view('/swal-icon', 'swal.swal-icon');
+Route::view('/swal-display', 'swal.swal-display');
+
+Route::get("/swal-alert-success", [SwalController::class, "alertSuccess"]);
+Route::get("/swal-alert-info", [SwalController::class, "alertInfo"]);
+Route::get("/swal-success", [SwalController::class, "success"]);
+Route::get("/swal-toast", [SwalController::class, "toast"]);
+Route::get("/swal-info", [SwalController::class, "info"]);
+Route::get("/swal-html", [SwalController::class, "html"]);
+
+Route::get('/swal-autoclose', [SwalController::class,'autoClose']);
+Route::get('/swal-position', [SwalController::class,'position']);
+Route::get('/swal-confirm', [SwalController::class,'confirm']);
+Route::get('/swal-cancel', [SwalController::class,'cancel']);
+Route::get('/swal-addimage', [SwalController::class,'addImage']);
+Route::get('/swal-animation', [SwalController::class,'animation']);
+Route::get('/swal-progressbar', [SwalController::class,'proggressBar']);
+
+// Novel
 Route::get('/', [HomepageController::class, "index"])->name("homepage");
 Route::post('/homepage-search-novel', [HomepageController::class, "search"])->name("input-search");
 Route::post('/cari-novel', [HomepageController::class, "cari"])->name("cari-novel");
@@ -102,3 +124,5 @@ Route::post("/delete-library", [LibraryController::class, 'deleteFromLibrary'])-
 Route::post('/cari-list-novel', [NovelController::class, "cariListNovel"])->name('cari-list-novel');
 
 Route::get('/{judulNovel}', [NovelController::class, "viewNovel"])->middleware(['validJudul'])->name('view-novel');
+
+
