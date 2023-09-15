@@ -32,6 +32,8 @@ Route::get("/donation", [DonationController::class, "create"])->name("donation.c
 Route::get("/donation-home", [DonationController::class, "index"])->name("donation.index");
 
 
+
+
 // GOOGLE LOGIN
 Route::get('/login/google', [LoginController::class, "redirectToGoogle"]);
 Route::get('/login/google/callback', [LoginController::class, "handleGoogleCallback"]);

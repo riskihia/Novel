@@ -12,11 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('donations', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->nullable()->primary();
             $table->string('donor_name')->nullable();
             $table->string('donor_email')->nullable();
             $table->string('donation_type')->nullable();
-            $table->decimal('amount', 20, 2)->default(0);
+            $table->bigInteger('amount');
             $table->string('note')->nullable();
             $table->string('status')->default('pending');
             $table->string('snap_token')->nullable();

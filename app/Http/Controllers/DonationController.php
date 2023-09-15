@@ -43,7 +43,6 @@ class DonationController extends Controller
                 'amount' => floatval($request->amount),
                 'note' => $request->note,
             ]);
-
             $payload = [
                 'transaction_details' => [
                     'order_id'      => $donation->id,
@@ -71,7 +70,7 @@ class DonationController extends Controller
             
             $this->response['snap_token'] = $snapToken;
         });
-
+        // dd($this->response);
         return response()->json($this->response);
     }
 

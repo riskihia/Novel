@@ -36,6 +36,8 @@ return [
         'redirect' => env('GOOGLE_CLIENT_REDIRECT'),
     ],
     'midtrans' => [
+        // Merchant idate
+        'merchantId' => env("MIDTRANS_MERCHANT_ID"),
         // Midtrans server key
         'serverKey'     => env('MIDTRANS_SERVERKEY'),
         // Midtrans client key
