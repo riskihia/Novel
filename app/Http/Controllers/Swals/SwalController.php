@@ -141,7 +141,7 @@ class SwalController extends Controller
     // ============================================================
     public function with()
     {
-      return redirect('swal.swal-laravel')->with('success','Data mahasiswa
+      return redirect('swal-laravel')->with('success','Data mahasiswa
       berhasil diinput');
       // return redirect('swal.swal-laravel')->with('info','Data mahasiswa
       // berhasil diinput');
@@ -151,7 +151,7 @@ class SwalController extends Controller
     {
       // return redirect('swal.swal-laravel')->withSuccess('Data mahasiswa
       // berhasil diinput');
-      return redirect('swal.swal-laravel')->withWarning('Terjadi kesalahan input');
+      return redirect('swal-laravel')->withWarning('Terjadi kesalahan input');
     }
 
 
@@ -200,7 +200,7 @@ class SwalController extends Controller
         }
         else {
           // Kode untuk proses ke database disini
-          return redirect('swal.swal-laravel')->withSuccess('Data jurusan berhasil diinput');
+          return redirect('swal-laravel')->withSuccess('Data jurusan berhasil diinput');
         }
     }
 
@@ -212,12 +212,12 @@ class SwalController extends Controller
 
     public function delete()
     {
-      return view('swal-delete')->with(['id' => 7,'nama' => 'Novi Lestari']);
+      return view('swal.swal-delete')->with(['id' => 7,'nama' => 'Novi Lestari']);
     }
 
     public function destroy($id)
     {
       Alert::alert('Berhasil',"Data dengan id $id berhasil di hapus",'success');
-      return redirect('swal.swal-laravel');
+      return redirect('swal-laravel');
     }
 }

@@ -44,6 +44,17 @@ Route::get('/swal-addimage', [SwalController::class,'addImage']);
 Route::get('/swal-animation', [SwalController::class,'animation']);
 Route::get('/swal-progressbar', [SwalController::class,'proggressBar']);
 
+Route::view('/swal-laravel', 'swal.swal-laravel');
+Route::get('/swal-with', [SwalController::class,'with']);
+Route::get('/swal-with-success', [SwalController::class,'withSuccess']);
+
+Route::view('/swal-form', 'swal.swal-form');
+Route::post('/swal-validate-satu', [SwalController::class,'swalValidateSatu']);
+Route::post('/swal-validate-banyak', [SwalController::class,'swalValidateBanyak']);
+
+Route::get('/swal-delete', [SwalController::class,'delete']);
+Route::delete('/swal-delete/{id}', [SwalController::class,'destroy']);
+
 // Novel
 Route::get('/', [HomepageController::class, "index"])->name("homepage");
 Route::post('/homepage-search-novel', [HomepageController::class, "search"])->name("input-search");

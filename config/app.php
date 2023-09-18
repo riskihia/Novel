@@ -6,6 +6,7 @@ use App\Providers\TagServiceProvider;
 use App\Providers\UserServiceProvider;
 use Illuminate\Support\Facades\Facade;
 use Illuminate\Support\ServiceProvider;
+use RealRashid\SweetAlert\SweetAlertServiceProvider;
 
 return [
 
@@ -175,7 +176,8 @@ return [
         UserServiceProvider::class,
         NovelServiceProvider::class,
         TagServiceProvider::class,
-        RequestServiceProvider::class
+        RequestServiceProvider::class,
+        SweetAlertServiceProvider::class,
     ])->toArray(),
 
     /*
@@ -191,6 +193,7 @@ return [
 
     'aliases' => Facade::defaultAliases()->merge([
         // 'Example' => App\Facades\Example::class,
+        'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
     ])->toArray(),
 
 ];

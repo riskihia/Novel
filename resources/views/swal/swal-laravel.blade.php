@@ -7,7 +7,7 @@
         <title>Laravel</title>
 
         <!-- Styles -->
-        @vite('resources/css/app.css')
+        {{-- @vite('resources/css/app.css') --}}
         <link rel="stylesheet" href="/css/animate.min.css">
     </head>
     <body>
@@ -15,6 +15,6 @@
         <hr>
 
         @include('sweetalert::alert')
-        @vite('resources/js/app.js')
+        {{-- @vite('resources/js/app.js') --}}
     </body>
 </html>
